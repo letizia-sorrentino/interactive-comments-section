@@ -33,6 +33,7 @@ const Comments = () => {
   // state hook to store comments
   // const [user, setUser] = useState(initialData);
   const [comments, setComments] = useState<Comment[]>(initialData.comments);
+
   useEffect(() => {
     // setUser(initialData);
     setComments(initialData.comments);
@@ -42,12 +43,13 @@ const Comments = () => {
   return (
     <>
       {comments.map((comment: Comment) => (
-        <div key={comment.id}>
+        <div className="commentContainer" key={comment.id}>
           <img src={comment.user.image.webp} alt={comment.user.username} />
           <p>{comment.user.username}</p>
-          <p>{comment.content}</p>
           <p>{comment.createdAt}</p>
+          <p>{comment.content}</p>
           <p>{comment.score}</p>
+          <button>Reply</button>
         </div>
       ))}
     </>
