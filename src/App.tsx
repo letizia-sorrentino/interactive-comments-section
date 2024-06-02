@@ -1,12 +1,14 @@
+import Comments from "./components/Comments";
 import Footer from "./components/Footer";
 import "./App.css";
 
-function App() {
+const App = () => {
   return (
     <>
+      <Comments />
       <Footer />
     </>
   );
-}
+};
 
 export default App;
