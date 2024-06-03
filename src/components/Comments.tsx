@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import data from "../data.json";
+import "../styles/comments.css";
 
 type Image = {
   png: string;
@@ -44,12 +45,17 @@ const Comments = () => {
     <>
       {comments.map((comment: Comment) => (
         <div className="commentContainer" key={comment.id}>
-          <img src={comment.user.image.webp} alt={comment.user.username} />
-          <p>{comment.user.username}</p>
-          <p>{comment.createdAt}</p>
+          <div className="commentHeader">
+            {" "}
+            <img src={comment.user.image.png} alt={comment.user.username} />
+            <p>{comment.user.username}</p>
+            <p>{comment.createdAt}</p>
+          </div>
           <p>{comment.content}</p>
-          <p>{comment.score}</p>
-          <button>Reply</button>
+          <div className="buttonContainer">
+            <button>{comment.score}</button>
+            <button>Reply</button>
+          </div>
         </div>
       ))}
     </>

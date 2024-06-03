@@ -1,0 +1,12 @@
+.commentContainer {
+    background-color: hsl(0, 0%, 100%);
+    padding: 2rem 1rem;
+}
+
+.commentHeader {display: flex;
+    justify-content: space-between;
+    }
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+}
