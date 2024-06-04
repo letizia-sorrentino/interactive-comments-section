@@ -1,45 +1,29 @@
 import { useEffect, useState } from "react";
+import { Comment, Data } from "../types/types";
+import IconMinus from "../assets/images/icon-minus.svg";
+import IconPlus from "../assets/images/icon-plus.svg";
 import data from "../data.json";
-import "../styles/comments.css";
-
-type Image = {
-  png: string;
-  webp: string;
-};
-
-type User = {
-  image: Image;
-  username: string;
-};
-
-type Comment = {
-  id: number;
-  content: string;
-  createdAt: string;
-  score: number;
-  user: User;
-  replies?: Comment[];
-  replyingTo?: string;
-};
-
-type Data = {
-  currentUser: User;
-  comments: Comment[];
-};
 
 // initial data
 const initialData: Data = data;
 
 const Comments = () => {
   // state hook to store comments
-  // const [user, setUser] = useState(initialData);
   const [comments, setComments] = useState<Comment[]>(initialData.comments);
 
   useEffect(() => {
-    // setUser(initialData);
+    //sending initial data to comments in state
     setComments(initialData.comments);
     console.log(initialData.comments);
   }, []);
+
+  const addScore = (id: number) => {
+    console.log(id);
+  };
+
+  const subtractScore = (id: number) => {
+    console.log(id);
+  };
 
   return (
     <>
@@ -47,14 +31,32 @@ const Comments = () => {
         <div className="commentContainer" key={comment.id}>
           <div className="commentHeader">
             {" "}
-            <img src={comment.user.image.png} alt={comment.user.username} />
-            <p>{comment.user.username}</p>
-            <p>{comment.createdAt}</p>
+            <img
+              className="avatar"
+              src={comment.user.image.png}
+              alt={comment.user.username}
+            />
+            <p className="userName">{comment.user.username}</p>
+            <p className="createdAt">{comment.createdAt}</p>
           </div>
-          <p>{comment.content}</p>
-          <div className="buttonContainer">
-            <button>{comment.score}</button>
-            <button>Reply</button>
+          <p className="commentContent">{comment.content}</p>
+          <div className="buttonsContainer">
+            <div className="scoreButton">
+              <img
+                className="iconPlus"
+                src={IconPlus}
+                alt="iconPlus"
+                onClick={() => addScore(comment.id)}
+              ></img>
+              <div className="commentScore">{comment.score}</div>
+              <img
+                className="iconMinus"
+                src={IconMinus}
+                alt="iconMinus"
+                onClick={() => subtractScore(comment.id)}
+              ></img>
+            </div>
+            <button className="replyButton">Reply</button>
           </div>
         </div>
       ))}

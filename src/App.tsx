@@ -1,11 +1,13 @@
-import Comments from "./components/Comments";
+import Comment from "./components/Comments";
+import Replies from "./components/Replies";
 import Footer from "./components/Footer";
 import "./App.css";
 
 const App = () => {
   return (
     <>
-      <Comments />
+      <Comment />
+      <Replies />
       <Footer />
     </>
   );

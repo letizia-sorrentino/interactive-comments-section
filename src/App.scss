@@ -44,6 +44,7 @@
   font-weight: 800;
 }
 
+//Button container
 .buttonsContainer {
   display: flex;
   justify-content: space-between;
@@ -68,6 +69,7 @@
   padding: 0.8rem;
 }
 
+// Replies
 .replyContainer {
   background-color: hsl(0, 0%, 100%);
   padding: 1rem;
@@ -80,4 +82,4 @@
   justify-content: flex-start;
   align-items: center;
   gap: 1rem;
-}/*# sourceMappingURL=App.css.map */
+}
