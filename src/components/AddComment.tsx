@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { User, Data } from "../types/types";
 import data from "../data.json";
+import "../App.css";
 
 const initialData: Data = data;
 

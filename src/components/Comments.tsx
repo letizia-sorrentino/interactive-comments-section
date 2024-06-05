@@ -3,6 +3,7 @@ import { Comment, Data } from "../types/types";
 import IconMinus from "../assets/images/icon-minus.svg";
 import IconPlus from "../assets/images/icon-plus.svg";
 import data from "../data.json";
+import "../App.css";
 
 // initial data
 const initialData: Data = data;

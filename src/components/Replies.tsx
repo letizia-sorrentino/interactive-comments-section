@@ -3,6 +3,8 @@ import data from "../data.json";
 import { Reply, Data } from "../types/types";
 import IconMinus from "../assets/images/icon-minus.svg";
 import IconPlus from "../assets/images/icon-plus.svg";
+import AddReply from "./AddReply";
+import "../App.css";
 
 const Replies = () => {
   // initial data
@@ -15,6 +17,7 @@ const Replies = () => {
 
   // state hook to store comments
   const [replies, setReplies] = useState<Reply[]>([]);
+  const [showAddReply, setShowAddReply] = useState<boolean>(false);
 
   useEffect(() => {
     //sending initial data to comments in state
@@ -40,6 +43,7 @@ const Replies = () => {
 
   const onReply = (id: number) => {
     console.log("replying to", id);
+    setShowAddReply(!showAddReply);
   };
 
   return (
@@ -76,12 +80,13 @@ const Replies = () => {
                 onClick={() => subtractScore(reply.id)}
               ></img>
             </div>
-            <button className="replyButton" onClick={onReply}>
+            <button className="replyButton" onClick={() => onReply(reply.id)}>
               Reply
             </button>
-          </div>
+          </div>{" "}
+          <div> {showAddReply && <AddReply />} </div>
         </div>
-      ))}
+      ))}{" "}
     </>
   );
 };

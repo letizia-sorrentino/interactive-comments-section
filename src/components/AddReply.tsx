@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { User, Data } from "../types/types";
 import data from "../data.json";
+import "../App.css";
 
 const initialData: Data = data;
 
@@ -15,25 +16,21 @@ const AddReply = () => {
     console.log(initialData.currentUser);
   }, []);
 
-  const handleAddComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleAddReply = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNewReply(e.target.value);
     console.log(newReply);
   };
 
   return (
-    <div>
-      <div className="addCommentContainer">
-        <textarea
-          className="commentInput"
-          placeholder="Add a comment..."
-          onChange={handleAddComment}
-        ></textarea>
-
-        <div className="commentHeader">
-          <img className="avatar" src={user.image.png} alt={user.username} />
-        </div>
-
-        <button className="addCommentButton">REPLY</button>
+    <div className="addReplyContainer">
+      <textarea
+        className="replyInput"
+        placeholder="Add a reply..."
+        onChange={handleAddReply}
+      ></textarea>
+      <div className="replyHeader">
+        <img className="avatar" src={user.image.png} alt={user.username} />
+        <button className="addReplyButton">REPLY</button>
       </div>
     </div>
   );
