@@ -4,10 +4,10 @@ import data from "../data.json";
 
 const initialData: Data = data;
 
-const AddComment = () => {
+const AddReply = () => {
   // state hook to store comments
   const [user, setUser] = useState<User>(initialData.currentUser);
-  const [newComment, setNewComment] = useState<string>("");
+  const [newReply, setNewReply] = useState<string>("");
 
   useEffect(() => {
     //sending initial data to comments in state
@@ -16,8 +16,8 @@ const AddComment = () => {
   }, []);
 
   const handleAddComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setNewComment(e.target.value);
-    console.log(newComment);
+    setNewReply(e.target.value);
+    console.log(newReply);
   };
 
   return (
@@ -33,9 +33,9 @@ const AddComment = () => {
           <img className="avatar" src={user.image.png} alt={user.username} />
         </div>
 
-        <button className="addCommentButton">SEND</button>
+        <button className="addCommentButton">REPLY</button>
       </div>
     </div>
   );
 };
-export default AddComment;
+export default AddReply;

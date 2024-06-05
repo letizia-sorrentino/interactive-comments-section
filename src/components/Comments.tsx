@@ -18,11 +18,19 @@ const Comments = () => {
   }, []);
 
   const addScore = (id: number) => {
-    console.log(id);
+    setComments((prevComments) =>
+      prevComments.map((comment) =>
+        comment.id === id ? { ...comment, score: comment.score + 1 } : comment
+      )
+    );
   };
 
   const subtractScore = (id: number) => {
-    console.log(id);
+    setComments((prevComments) =>
+      prevComments.map((comment) =>
+        comment.id === id ? { ...comment, score: comment.score - 1 } : comment
+      )
+    );
   };
 
   return (

@@ -22,6 +22,26 @@ const Replies = () => {
     console.log(allReplies);
   }, []);
 
+  const addScore = (id: number) => {
+    setReplies((prevReplies) =>
+      prevReplies.map((reply) =>
+        reply.id === id ? { ...reply, score: reply.score + 1 } : reply
+      )
+    );
+  };
+
+  const subtractScore = (id: number) => {
+    setReplies((prevReplies) =>
+      prevReplies.map((reply) =>
+        reply.id === id ? { ...reply, score: reply.score - 1 } : reply
+      )
+    );
+  };
+
+  const onReply = (id: number) => {
+    console.log("replying to", id);
+  };
+
   return (
     <>
       {replies.map((reply: Reply) => (
@@ -36,15 +56,29 @@ const Replies = () => {
             <p className="userName">{reply.user.username}</p>
             <p className="createdAt">{reply.createdAt}</p>
           </div>
-          <span className="replyingTo">@{reply.replyingTo}</span>
-          <span className="replyContent"> {reply.content}</span>
+          <div className="replyMessage">
+            <span className="replyingTo">@{reply.replyingTo}</span>
+            <span className="replyContent"> {reply.content}</span>
+          </div>
           <div className="buttonsContainer">
             <div className="scoreButton">
-              <img className="iconPlus" src={IconPlus} alt="iconPlus"></img>
+              <img
+                className="iconPlus"
+                src={IconPlus}
+                alt="iconPlus"
+                onClick={() => addScore(reply.id)}
+              ></img>
               <div className="replyScore">{reply.score}</div>
-              <img className="iconMinus" src={IconMinus} alt="iconMinus"></img>
+              <img
+                className="iconMinus"
+                src={IconMinus}
+                alt="iconMinus"
+                onClick={() => subtractScore(reply.id)}
+              ></img>
             </div>
-            <button className="replyButton">Reply</button>
+            <button className="replyButton" onClick={onReply}>
+              Reply
+            </button>
           </div>
         </div>
       ))}
