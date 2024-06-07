@@ -5,12 +5,12 @@ import ReplyForm from "./ReplyForm";
 import "../App.css";
 
 //Define the properties that will be passed as props to the Comment component from the parent component:
-interface CommentProps {
+export interface CommentProps {
   comment: CommentData;
   addScore: (id: number) => void;
   subtractScore: (id: number) => void;
   onReply: (id: number) => void;
-  showReplyForm: boolean;
+  showReplyForm: number | undefined;
 }
 
 const Comment: React.FC<CommentProps> = ({
@@ -20,6 +20,7 @@ const Comment: React.FC<CommentProps> = ({
   onReply,
   showReplyForm,
 }) => {
+  console.log(comment.id, comment.user.username);
   return (
     <div className="commentContainer" key={comment.id}>
       <div className="commentHeader">
@@ -53,7 +54,12 @@ const Comment: React.FC<CommentProps> = ({
           Reply
         </button>
       </div>
-      <div> {showReplyForm && <ReplyForm />} </div>
+      <div>
+        {" "}
+        {showReplyForm === comment.id && (
+          <ReplyForm replyingTo={comment.user} />
+        )}{" "}
+      </div>
     </div>
   );
 };

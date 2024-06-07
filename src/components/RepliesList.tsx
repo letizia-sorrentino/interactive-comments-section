@@ -8,6 +8,7 @@ const RepliesList = () => {
   // initial data
   const initialData: CommentThreadData = data;
 
+  //destructure initial data
   const { comments } = initialData;
 
   // Extract all replies into a single array
@@ -15,12 +16,12 @@ const RepliesList = () => {
 
   // state hook to store comments
   const [replies, setReplies] = useState<ReplyData[]>([]);
-  const [showReplyForm, setShowReplyForm] = useState<boolean>(false);
+  const [showReplyForm, setShowReplyForm] = useState<number>();
 
   useEffect(() => {
     //sending initial data to comments in state
     setReplies(allReplies);
-    console.log(allReplies);
+    // console.log(allReplies);
   }, []);
 
   const addScore = (id: number) => {
@@ -39,9 +40,9 @@ const RepliesList = () => {
     );
   };
 
-  const onReply = (id: number) => {
+  const onReplyCLick = (id: number) => {
+    setShowReplyForm(id);
     console.log("replying to", id);
-    setShowReplyForm(!showReplyForm);
   };
 
   return (
@@ -52,7 +53,7 @@ const RepliesList = () => {
           reply={reply}
           addScore={addScore}
           subtractScore={subtractScore}
-          onReply={onReply}
+          onReply={onReplyCLick}
           showReplyForm={showReplyForm}
         />
       ))}

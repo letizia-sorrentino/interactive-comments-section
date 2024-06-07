@@ -14,6 +14,7 @@ export type CommentData = {
   createdAt: string;
   score: number;
   user: UserData;
+  replyingTo?: string;
   replies: ReplyData[];
 };
 

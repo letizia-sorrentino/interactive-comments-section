@@ -13,7 +13,7 @@ const CommentForm = () => {
   useEffect(() => {
     //sending initial data to comments in state
     setUser(initialData.currentUser);
-    console.log(initialData.currentUser);
+    // console.log(initialData.currentUser);
   }, []);
 
   const handleAddComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

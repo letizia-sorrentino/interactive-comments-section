@@ -9,7 +9,7 @@ interface ReplyProps {
   addScore: (id: number) => void;
   subtractScore: (id: number) => void;
   onReply: (id: number) => void;
-  showReplyForm: boolean;
+  showReplyForm: number | undefined;
 }
 
 const Reply: React.FC<ReplyProps> = ({
@@ -55,7 +55,12 @@ const Reply: React.FC<ReplyProps> = ({
           Reply
         </button>
       </div>{" "}
-      <div> {showReplyForm && <ReplyForm />} </div>
+      <div>
+        {" "}
+        {showReplyForm === reply.id && (
+          <ReplyForm replyingTo={reply.user} />
+        )}{" "}
+      </div>
     </div>
   );
 };

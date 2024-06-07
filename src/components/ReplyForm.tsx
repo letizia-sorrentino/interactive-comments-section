@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { UserData, CommentThreadData } from "../types/types";
+
 import data from "../data.json";
 import "../App.css";
 
 const initialData: CommentThreadData = data;
 
-const ReplyForm = () => {
+interface ReplyFormProps {
+  replyingTo: UserData | null;
+}
+
+const ReplyForm: React.FC<ReplyFormProps> = ({ replyingTo }) => {
   // state hook to store comments
   const [user, setUser] = useState<UserData>(initialData.currentUser);
   const [newReply, setNewReply] = useState<string>("");
@@ -13,7 +18,7 @@ const ReplyForm = () => {
   useEffect(() => {
     //sending initial data to comments in state
     setUser(initialData.currentUser);
-    console.log(initialData.currentUser);
+    // console.log(initialData.currentUser);
   }, []);
 
   const handleAddReply = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -21,11 +26,19 @@ const ReplyForm = () => {
     console.log(newReply);
   };
 
+  const getPlaceholderText = () => {
+    if (replyingTo) {
+      return `@${replyingTo.username} `;
+    } else {
+      return "Add a reply...";
+    }
+  };
+
   return (
     <div className="addReplyContainer">
       <textarea
         className="replyInput"
-        // placeholder="Add a reply..." {`@${replyingTo}`}
+        placeholder={getPlaceholderText()}
         onChange={handleAddReply}
       ></textarea>
       <div className="replyHeader">

@@ -10,12 +10,12 @@ const initialData: CommentThreadData = data;
 const CommentsList = () => {
   // state hook to store comments
   const [comments, setComments] = useState<CommentData[]>(initialData.comments);
-  const [showReplyForm, setShowReplyForm] = useState<boolean>(false);
+  const [showReplyForm, setShowReplyForm] = useState<number>();
 
   //sending initial data to comments in state
   useEffect(() => {
     setComments(initialData.comments);
-    console.log(initialData.comments);
+    // console.log(initialData.comments);
   }, []);
 
   // function that takes a comment's id and increases its score.
@@ -36,10 +36,10 @@ const CommentsList = () => {
     );
   };
 
-  // function that takes a comment's id and toggles the ReplyForm component
-  const onReply = (id: number) => {
+  // // function that takes a comment's id and open the ReplyForm component
+  const onReplyClick = (id: number) => {
+    setShowReplyForm(id);
     console.log("replying to", id);
-    setShowReplyForm(!showReplyForm);
   };
 
   return (
@@ -51,7 +51,7 @@ const CommentsList = () => {
           comment={comment}
           addScore={addScore}
           subtractScore={subtractScore}
-          onReply={onReply}
+          onReply={onReplyClick}
           showReplyForm={showReplyForm}
         />
       ))}
