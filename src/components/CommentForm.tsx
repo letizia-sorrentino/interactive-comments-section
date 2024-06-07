@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { User, Data } from "../types/types";
+import { UserData, CommentThreadData } from "../types/types";
 import data from "../data.json";
 import "../App.css";
 
-const initialData: Data = data;
+const initialData: CommentThreadData = data;
 
-const AddComment = () => {
+const NewComment = () => {
   // state hook to store comments
-  const [user, setUser] = useState<User>(initialData.currentUser);
+  const [user, setUser] = useState<UserData>(initialData.currentUser);
   const [newComment, setNewComment] = useState<string>("");
 
   useEffect(() => {
@@ -39,4 +39,4 @@ const AddComment = () => {
     </div>
   );
 };
-export default AddComment;
+export default NewComment;

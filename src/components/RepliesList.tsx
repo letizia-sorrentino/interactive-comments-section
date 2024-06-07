@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import data from "../data.json";
-import { Reply, Data } from "../types/types";
+import { ReplyData, CommentThreadData } from "../types/types";
 import IconMinus from "../assets/images/icon-minus.svg";
 import IconPlus from "../assets/images/icon-plus.svg";
-import AddReply from "./AddReply";
+import NewReply from "./ReplyForm";
 import "../App.css";
 
-const Replies = () => {
+const RepliesList = () => {
   // initial data
-  const initialData: Data = data;
+  const initialData: CommentThreadData = data;
 
   const { comments } = initialData;
 
@@ -16,7 +16,7 @@ const Replies = () => {
   const allReplies = comments.flatMap((comment) => comment.replies);
 
   // state hook to store comments
-  const [replies, setReplies] = useState<Reply[]>([]);
+  const [replies, setReplies] = useState<ReplyData[]>([]);
   const [showAddReply, setShowAddReply] = useState<boolean>(false);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const Replies = () => {
 
   return (
     <>
-      {replies.map((reply: Reply) => (
+      {replies.map((reply: ReplyData) => (
         <div className="replyContainer" key={reply.id}>
           <div className="replyHeader">
             {" "}
@@ -84,10 +84,10 @@ const Replies = () => {
               Reply
             </button>
           </div>{" "}
-          <div> {showAddReply && <AddReply />} </div>
+          <div> {showAddReply && <NewReply />} </div>
         </div>
       ))}{" "}
     </>
   );
 };
-export default Replies;
+export default RepliesList;

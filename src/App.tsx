@@ -1,15 +1,15 @@
-import Comment from "./components/Comments";
-import Replies from "./components/Replies";
-import AddComment from "./components/AddComment";
+import CommentsList from "./components/CommentsList";
+import RepliesList from "./components/RepliesList";
+import NewComment from "./components/CommentForm";
 import Footer from "./components/Footer";
 import "./App.css";
 
 const App = () => {
   return (
     <>
-      <Comment />
-      <Replies />
-      <AddComment />
+      <CommentsList />
+      <RepliesList />
+      <NewComment />
       <Footer />
     </>
   );

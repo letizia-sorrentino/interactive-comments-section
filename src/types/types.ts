@@ -1,33 +1,33 @@
-export type Image = {
+export type UserImage = {
   png: string;
   webp: string;
 };
 
-export type User = {
-  image: Image;
+export type UserData = {
+  image: UserImage;
   username: string;
 };
 
-export type Comment = {
+export type CommentData = {
   id: number;
   content: string;
   createdAt: string;
   score: number;
-  user: User;
-  replies: Reply[];
+  user: UserData;
+  replies: ReplyData[];
 };
 
-export type Reply = {
+export type ReplyData = {
   id: number;
   content: string;
   createdAt: string;
   score: number;
   replyingTo: string;
-  replies?: Reply[];
-  user: User;
+  replies?: ReplyData[];
+  user: UserData;
 };
 
-export type Data = {
-  comments: Comment[];
-  currentUser: User;
+export type CommentThreadData = {
+  comments: CommentData[];
+  currentUser: UserData;
 };
