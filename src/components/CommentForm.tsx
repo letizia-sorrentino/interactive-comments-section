@@ -5,7 +5,7 @@ import "../App.css";
 
 const initialData: CommentThreadData = data;
 
-const NewComment = () => {
+const CommentForm = () => {
   // state hook to store comments
   const [user, setUser] = useState<UserData>(initialData.currentUser);
   const [newComment, setNewComment] = useState<string>("");
@@ -39,4 +39,4 @@ const NewComment = () => {
     </div>
   );
 };
-export default NewComment;
+export default CommentForm;
