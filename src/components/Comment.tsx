@@ -20,7 +20,6 @@ const Comment: React.FC<CommentProps> = ({
   onReply,
   showReplyForm,
 }) => {
-  console.log(comment.id, comment.user.username);
   return (
     <div className="commentContainer" key={comment.id}>
       <div className="commentHeader">

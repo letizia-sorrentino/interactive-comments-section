@@ -43,7 +43,7 @@ const ReplyForm: React.FC<ReplyFormProps> = ({ replyingTo }) => {
       ></textarea>
       <div className="replyHeader">
         <img className="avatar" src={user.image.png} alt={user.username} />
-        <button className="addReplyButton">REPLY</button>
+        <button className="addReplyButton" >REPLY</button>
       </div>
     </div>
   );

@@ -3,6 +3,8 @@ import { CommentData, CommentThreadData } from "../types/types";
 import data from "../data.json";
 import Comment from "./Comment";
 import "../App.css";
+import CommentForm from "./CommentForm";
+import RepliesList from "./RepliesList";
 
 // initial data
 const initialData: CommentThreadData = data;
@@ -36,11 +38,13 @@ const CommentsList = () => {
     );
   };
 
-  // // function that takes a comment's id and open the ReplyForm component
+  // function that takes a comment's id and open the ReplyForm component
   const onReplyClick = (id: number) => {
     setShowReplyForm(id);
-    console.log("replying to", id);
+    // console.log("replying to", id);
   };
+
+  const handleCommentSubmit = () => {};
 
   return (
     <>
@@ -55,6 +59,8 @@ const CommentsList = () => {
           showReplyForm={showReplyForm}
         />
       ))}
+      <RepliesList />
+      <CommentForm onCommentSubmit={handleCommentSubmit} />
     </>
   );
 };

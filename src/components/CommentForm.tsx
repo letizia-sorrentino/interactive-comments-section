@@ -5,7 +5,11 @@ import "../App.css";
 
 const initialData: CommentThreadData = data;
 
-const CommentForm = () => {
+type CommentFormProps = {
+  onCommentSubmit: (comment: string) => void;
+};
+
+const CommentForm = ({ onCommentSubmit }: CommentFormProps) => {
   // state hook to store comments
   const [user, setUser] = useState<UserData>(initialData.currentUser);
   const [newComment, setNewComment] = useState<string>("");
@@ -21,6 +25,14 @@ const CommentForm = () => {
     console.log(newComment);
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onCommentSubmit(newComment);
+    console.log("new comment:", newComment);
+    localStorage.setItem("comments", newComment);
+    setNewComment("");
+  };
+
   return (
     <div>
       <div className="addCommentContainer">
@@ -34,7 +46,9 @@ const CommentForm = () => {
           <img className="avatar" src={user.image.png} alt={user.username} />
         </div>
 
-        <button className="addCommentButton">SEND</button>
+        <button className="addCommentButton" onClick={handleSubmit}>
+          SEND
+        </button>
       </div>
     </div>
   );

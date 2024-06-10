@@ -42,7 +42,7 @@ const RepliesList = () => {
 
   const onReplyCLick = (id: number) => {
     setShowReplyForm(id);
-    console.log("replying to", id);
+    // console.log("replying to", id);
   };
 
   return (
