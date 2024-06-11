@@ -3,8 +3,6 @@ import { CommentData, CommentThreadData } from "../types/types";
 import data from "../data.json";
 import Comment from "./Comment";
 import "../App.css";
-import CommentForm from "./CommentForm";
-import RepliesList from "./RepliesList";
 
 // initial data
 const initialData: CommentThreadData = data;
@@ -44,8 +42,6 @@ const CommentsList = () => {
     // console.log("replying to", id);
   };
 
-  const handleCommentSubmit = () => {};
-
   return (
     <>
       {/* Map over your comments data and render a Comment component for each comment:  */}
@@ -59,8 +55,6 @@ const CommentsList = () => {
           showReplyForm={showReplyForm}
         />
       ))}
-      <RepliesList />
-      <CommentForm onCommentSubmit={handleCommentSubmit} />
     </>
   );
 };
