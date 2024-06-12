@@ -13,7 +13,7 @@ export interface CommentProps {
   showReplyForm: number | undefined;
 }
 
-const Comment: React.FC<CommentProps> = ({
+const CommentBox: React.FC<CommentProps> = ({
   comment,
   addScore,
   subtractScore,
@@ -63,4 +63,4 @@ const Comment: React.FC<CommentProps> = ({
   );
 };
 
-export default Comment;
+export default CommentBox;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import data from "../data.json";
 import { ReplyData, CommentThreadData } from "../types/types";
-import Reply from "../components/Reply";
+import Reply from "./ReplyBox";
 import "../App.css";
 
 const RepliesList = () => {

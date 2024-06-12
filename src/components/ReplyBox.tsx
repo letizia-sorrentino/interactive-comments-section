@@ -12,7 +12,7 @@ interface ReplyProps {
   showReplyForm: number | undefined;
 }
 
-const Reply: React.FC<ReplyProps> = ({
+const ReplyBox: React.FC<ReplyProps> = ({
   reply,
   addScore,
   subtractScore,
@@ -64,4 +64,4 @@ const Reply: React.FC<ReplyProps> = ({
     </div>
   );
 };
-export default Reply;
+export default ReplyBox;
