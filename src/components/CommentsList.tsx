@@ -3,9 +3,7 @@ import moment from "moment";
 import { CommentData, CommentThreadData, UserData } from "../types/types";
 import data from "../data.json";
 import CommentBox from "./CommentBox";
-import RepliesList from "./RepliesList";
 import CommentForm from "./CommentForm";
-import NewCommentBox from "./NewCommentBox";
 import "../App.css";
 
 // initial data
@@ -16,7 +14,6 @@ const CommentsList = () => {
   const [user] = useState<UserData>(initialData.currentUser);
   const [comments, setComments] = useState<CommentData[]>(initialData.comments);
   const [showReplyForm, setShowReplyForm] = useState<number>();
-  const [showCommentForm, setShowCommentForm] = useState<boolean>(false);
 
   // function that takes a comment's id and increases its score.
   const addScore = (id: number) => {
@@ -55,44 +52,41 @@ const CommentsList = () => {
   };
 
   const onSendClick = (id: number) => {
-    setShowCommentForm(true);
     console.log("clicked", id);
   };
 
   return (
     <>
       {/* Map over your comments data and render a Comment component for each comment:  */}
-      {comments.map((comment: CommentData) => (
-        <CommentBox
-          key={comment.id}
-          comment={comment}
-          addScore={addScore}
-          subtractScore={subtractScore}
-          onReply={onReplyClick}
-          showReplyForm={showReplyForm}
-        />
-      ))}
-      <RepliesList />
+      <div>
+        {comments.map((comment) => (
+          <div key={comment.id}>
+            <CommentBox
+              comment={comment}
+              addScore={addScore}
+              subtractScore={subtractScore}
+              onReply={onReplyClick}
+              showReplyForm={showReplyForm}
+            />
+            {comment.replies && comment.replies.length > 0 && (
+              <div className="replyContainer">
+                {comment.replies.map((reply) => (
+                  <CommentBox
+                    key={reply.id}
+                    comment={reply}
+                    addScore={addScore}
+                    subtractScore={subtractScore}
+                    onReply={onReplyClick}
+                    showReplyForm={showReplyForm}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
 
-      {showCommentForm === true && (
-        <NewCommentBox
-          content={""}
-          user={user}
-          id={0}
-          createdAt={""}
-          score={0}
-          addScore={() => {}}
-          subtractScore={() => {}}
-          onDelete={() => {}}
-          onUpdate={() => {}}
-        />
-      )}
-
-      <CommentForm
-        addComment={addComment}
-        showCommentForm={false}
-        onSend={onSendClick}
-      />
+      <CommentForm addComment={addComment} onSend={onSendClick} />
     </>
   );
 };

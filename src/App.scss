@@ -74,23 +74,23 @@
   // border-left: 3px solid hsl(223, 19%, 93%);
 }
 
-.replyHeader {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1rem;
-}
+// .replyHeader {
+//   display: flex;
+//   justify-content: flex-start;
+//   align-items: center;
+//   gap: 1rem;
+// }
 
-.replyMessage {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  color: hsl(228, 12%, 44%);
-  padding: 0.5rem;
-  .replyingTo {
-    color: hsl(238, 40%, 52%);
-    font-weight: 800;
-  }
-}
+// .replyMessage {
+//   margin-top: 0;
+//   margin-bottom: 0.5rem;
+//   color: hsl(228, 12%, 44%);
+//   padding: 0.5rem;
+//   .replyingTo {
+//     color: hsl(238, 40%, 52%);
+//     font-weight: 800;
+//   }
+// }
 
 //Add Comment
 .addCommentForm {

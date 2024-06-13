@@ -71,24 +71,6 @@
   border-radius: 0.5rem;
 }
 
-.replyHeader {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1rem;
-}
-
-.replyMessage {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  color: hsl(228, 12%, 44%);
-  padding: 0.5rem;
-}
-.replyMessage .replyingTo {
-  color: hsl(238, 40%, 52%);
-  font-weight: 800;
-}
-
 .addCommentForm {
   background-color: hsl(0, 0%, 100%);
   padding: 1rem;

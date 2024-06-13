@@ -11,6 +11,8 @@ export interface CommentProps {
   subtractScore: (id: number) => void;
   onReply: (id: number) => void;
   showReplyForm: number | undefined;
+  onDelete?: (id: number) => void;
+  onUpdate?: (id: number) => void;
 }
 
 const CommentBox: React.FC<CommentProps> = ({
@@ -20,6 +22,8 @@ const CommentBox: React.FC<CommentProps> = ({
   onReply,
   showReplyForm,
 }) => {
+
+
   return (
     <div className="commentContainer" key={comment.id}>
       <div className="commentHeader">

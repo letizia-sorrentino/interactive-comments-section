@@ -8,14 +8,12 @@ const initialData: CommentThreadData = data;
 export interface CommentFormProps {
   addComment: (comment: string) => void;
   onSend: (id: number) => void;
-  showCommentForm: boolean;
 }
 
 const CommentForm = ({ addComment }: CommentFormProps) => {
   // state hook to store comments
   const [user] = useState<UserData>(initialData.currentUser);
   const [newComment, setNewComment] = useState<string>("");
-  const [showCommentForm, setShowCommentForm] = useState<boolean>(false);
 
   // function that takes the input value and sets it to newComment
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -26,8 +24,8 @@ const CommentForm = ({ addComment }: CommentFormProps) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addComment(newComment);
-    setShowCommentForm(true);
-    console.log("new comment:", newComment, showCommentForm);
+    setNewComment("");
+    console.log("new comment:", newComment);
   };
 
   return (

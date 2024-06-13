@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { UserData, CommentThreadData } from "../types/types";
-
 import data from "../data.json";
 import "../App.css";
 

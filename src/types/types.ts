@@ -15,17 +15,7 @@ export type CommentData = {
   score: number;
   user: UserData;
   replyingTo?: string;
-  replies: ReplyData[];
-};
-
-export type ReplyData = {
-  id: number;
-  content: string;
-  createdAt: string;
-  score: number;
-  replyingTo: string;
-  replies?: ReplyData[];
-  user: UserData;
+  replies?: CommentData[];
 };
 
 export type CommentThreadData = {
