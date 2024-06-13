@@ -5,7 +5,8 @@
   min-height: 100vh;
 }
 
-.commentContainer {
+.commentContainer,
+.newCommentContainer {
   background-color: hsl(0, 0%, 100%);
   padding: 1rem;
   margin: 1rem 0;

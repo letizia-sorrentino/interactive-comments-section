@@ -27,7 +27,7 @@ const NewCommentBox: React.FC<NewCommentProps> = ({
   onUpdate,
 }) => {
   return (
-    <div className="commentContainer" key={id}>
+    <div className="newCommentContainer" key={id}>
       <div className="commentHeader">
         <img className="avatar" src={user.image.png} alt={user.username} />
         <span className="username">{user.username}</span>

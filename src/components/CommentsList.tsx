@@ -1,4 +1,5 @@
 import { useState } from "react";
+import moment from "moment";
 import { CommentData, CommentThreadData, UserData } from "../types/types";
 import data from "../data.json";
 import CommentBox from "./CommentBox";
@@ -45,7 +46,7 @@ const CommentsList = () => {
     const newComment: CommentData = {
       id: Date.now() + Math.random(),
       content: comment,
-      createdAt: new Date().toISOString(),
+      createdAt: moment(new Date()).fromNow(),
       score: 0,
       user: user,
       replies: [],
