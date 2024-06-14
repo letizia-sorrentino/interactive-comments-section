@@ -1,6 +1,9 @@
 import { CommentData } from "../types/types";
 import IconMinus from "../assets/images/icon-minus.svg";
 import IconPlus from "../assets/images/icon-plus.svg";
+import IconReply from "../assets/images/icon-reply.svg";
+import IconDelete from "../assets/images/icon-delete.svg";
+import IconUpdate from "../assets/images/icon-edit.svg";
 import ReplyForm from "./ReplyForm";
 import "../App.css";
 
@@ -22,6 +25,8 @@ const CommentBox: React.FC<CommentProps> = ({
   addScore,
   subtractScore,
   onReply,
+  onDelete,
+  onUpdate,
   showReplyForm,
 }) => {
   return (
@@ -56,9 +61,31 @@ const CommentBox: React.FC<CommentProps> = ({
             onClick={() => subtractScore(comment.id)}
           ></img>
         </div>
-        <button className="replyButton" onClick={() => onReply(comment.id)}>
-          Reply
-        </button>
+
+        {comment.user.username !== currentUser ? (
+          <button className="replyButton" onClick={() => onReply(comment.id)}>
+            <img className="iconReply" src={IconReply} alt="iconReply" /> Reply
+          </button>
+        ) : (
+          <>
+            <button
+              className="deleteButton"
+              onClick={() => onDelete(comment.id)}
+            >
+              {" "}
+              <img className="iconDelete" src={IconDelete} alt="iconDelete" />
+              Delete
+            </button>
+            <button
+              className="updateButton"
+              onClick={() => onUpdate(comment.id)}
+            >
+              {" "}
+              <img className="iconUpdate" src={IconUpdate} alt="iconUpdate" />
+              Edit
+            </button>
+          </>
+        )}
       </div>
       <div>
         {" "}

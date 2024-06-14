@@ -3,6 +3,7 @@ import moment from "moment";
 import { CommentData, CommentThreadData, UserData } from "../types/types";
 import data from "../data.json";
 import CommentBox from "./CommentBox";
+import Modal from "./Modal";
 import CommentForm from "./CommentForm";
 import "../App.css";
 
@@ -14,6 +15,7 @@ const CommentsList = () => {
   const [user] = useState<UserData>(initialData.currentUser);
   const [comments, setComments] = useState<CommentData[]>(initialData.comments);
   const [showReplyForm, setShowReplyForm] = useState<number>();
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   // function that takes a comment's id and increases its score.
   const addScore = (id: number) => {
@@ -37,6 +39,15 @@ const CommentsList = () => {
   const onReplyClick = (id: number) => {
     setShowReplyForm(id);
     // console.log("replying to", id);
+  };
+
+  const onUpdateClick = (id: number) => {
+    console.log("clicked", id);
+  };
+
+  const onDeleteClick = (id: number) => {
+    setShowModal(true);
+    console.log("clicked", id, showModal);
   };
 
   const addComment = (comment: string) => {
@@ -67,6 +78,8 @@ const CommentsList = () => {
               addScore={addScore}
               subtractScore={subtractScore}
               onReply={onReplyClick}
+              onUpdate={onUpdateClick}
+              onDelete={onDeleteClick}
               showReplyForm={showReplyForm}
             />
 
@@ -81,6 +94,8 @@ const CommentsList = () => {
                     addScore={addScore}
                     subtractScore={subtractScore}
                     onReply={onReplyClick}
+                    onUpdate={onUpdateClick}
+                    onDelete={onDeleteClick}
                     showReplyForm={showReplyForm}
                   />
                 ))}
@@ -89,6 +104,7 @@ const CommentsList = () => {
           </div>
         ))}
       </div>
+      {showModal === true && <Modal />}
 
       <CommentForm addComment={addComment} onSend={onSendClick} />
     </>
