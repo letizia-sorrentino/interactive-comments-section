@@ -63,17 +63,21 @@ const CommentsList = () => {
           <div key={comment.id}>
             <CommentBox
               comment={comment}
+              currentUser={user.username}
               addScore={addScore}
               subtractScore={subtractScore}
               onReply={onReplyClick}
               showReplyForm={showReplyForm}
             />
+
+            {/* Map over the replies array of each comment and render a Comment component for each reply: */}
             {comment.replies && comment.replies.length > 0 && (
               <div className="replyContainer">
                 {comment.replies.map((reply) => (
                   <CommentBox
                     key={reply.id}
                     comment={reply}
+                    currentUser={user.username}
                     addScore={addScore}
                     subtractScore={subtractScore}
                     onReply={onReplyClick}

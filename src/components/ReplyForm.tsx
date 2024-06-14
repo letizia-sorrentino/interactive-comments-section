@@ -7,6 +7,7 @@ const initialData: CommentThreadData = data;
 
 interface ReplyFormProps {
   replyingTo: UserData | null;
+  // addReply: (newReply: string) => void;
 }
 
 const ReplyForm: React.FC<ReplyFormProps> = ({ replyingTo }) => {
@@ -17,10 +18,9 @@ const ReplyForm: React.FC<ReplyFormProps> = ({ replyingTo }) => {
   useEffect(() => {
     //sending initial data to comments in state
     setUser(initialData.currentUser);
-    // console.log(initialData.currentUser);
   }, []);
 
-  const handleAddReply = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleReplyChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNewReply(e.target.value);
     console.log(newReply);
   };
@@ -33,18 +33,28 @@ const ReplyForm: React.FC<ReplyFormProps> = ({ replyingTo }) => {
     }
   };
 
+  // const handleReplySubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   addReply(newReply);
+  //   setNewReply("");
+  //   console.log("new reply:", newReply);
+  // };
+
   return (
-    <div className="addReplyContainer">
+    <form
+      // onSubmit={handleReplySubmit}
+      className="addReplyForm"
+    >
       <textarea
         className="replyInput"
         placeholder={getPlaceholderText()}
-        onChange={handleAddReply}
+        onChange={handleReplyChange}
       ></textarea>
       <div className="replyHeader">
         <img className="avatar" src={user.image.png} alt={user.username} />
         <button className="addReplyButton">REPLY</button>
       </div>
-    </div>
+    </form>
   );
 };
 export default ReplyForm;

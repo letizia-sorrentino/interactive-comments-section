@@ -7,6 +7,7 @@ import "../App.css";
 //Define the properties that will be passed as props to the Comment component from the parent component:
 export interface CommentProps {
   comment: CommentData;
+  currentUser: string;
   addScore: (id: number) => void;
   subtractScore: (id: number) => void;
   onReply: (id: number) => void;
@@ -17,13 +18,12 @@ export interface CommentProps {
 
 const CommentBox: React.FC<CommentProps> = ({
   comment,
+  currentUser,
   addScore,
   subtractScore,
   onReply,
   showReplyForm,
 }) => {
-
-
   return (
     <div className="commentContainer" key={comment.id}>
       <div className="commentHeader">
@@ -34,6 +34,9 @@ const CommentBox: React.FC<CommentProps> = ({
           alt={comment.user.username}
         />
         <p className="userName">{comment.user.username}</p>
+        {comment.user.username === currentUser && (
+          <span className="currentUser">you</span>
+        )}
         <p className="createdAt">{comment.createdAt}</p>
       </div>
       <p className="commentContent">{comment.content}</p>
