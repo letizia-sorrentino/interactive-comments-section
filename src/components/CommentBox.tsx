@@ -5,7 +5,6 @@ import IconReply from "../assets/images/icon-reply.svg";
 import IconDelete from "../assets/images/icon-delete.svg";
 import IconUpdate from "../assets/images/icon-edit.svg";
 import ReplyForm from "./ReplyForm";
-import "../App.css";
 
 //Define the properties that will be passed as props to the Comment component from the parent component:
 export interface CommentProps {

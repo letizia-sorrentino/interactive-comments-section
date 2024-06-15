@@ -5,7 +5,6 @@ import data from "../data.json";
 import CommentBox from "./CommentBox";
 import Modal from "./Modal";
 import CommentForm from "./CommentForm";
-import "../App.css";
 
 // initial data
 const initialData: CommentThreadData = data;

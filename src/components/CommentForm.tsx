@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { UserData, CommentThreadData } from "../types/types";
 import data from "../data.json";
-import "../App.css";
 
 const initialData: CommentThreadData = data;
 

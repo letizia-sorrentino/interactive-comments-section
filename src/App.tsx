@@ -1,7 +1,6 @@
 import CommentsList from "./components/CommentsList";
 import Footer from "./components/Footer";
-
-import "./App.css";
+import "./styles/App.css";
 
 const App = () => {
   return (

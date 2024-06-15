@@ -1,10 +1,3 @@
-#root {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 1rem;
-  min-height: 100vh;
-}
-
 .commentContainer,
 .newCommentContainer {
   background-color: hsl(0, 0%, 100%);
@@ -35,7 +28,6 @@
   color: hsl(0, 0%, 100%);
   font-weight: 600;
 }
-
 .createdAt {
   color: hsl(228, 12%, 44%);
   font-size: 0.9rem;
@@ -47,6 +39,7 @@
   padding: 0.5rem;
 }
 
+//Button container
 .buttonsContainer {
   display: flex;
   justify-content: space-between;
@@ -76,7 +69,6 @@
 .iconPlus {
   padding: 0.8rem;
 }
-
 .iconReply,
 .iconDelete,
 .iconUpdate {
@@ -113,13 +105,7 @@
   color: hsl(357, 100%, 86%);
 }
 
-.replyContainer {
-  background-color: hsl(0, 0%, 100%);
-  margin: 1rem 0 1rem 2rem;
-  padding: 1rem;
-  border-radius: 0.5rem;
-}
-
+//Add Comment
 .addCommentForm {
   background-color: hsl(0, 0%, 100%);
   padding: 1rem;
@@ -154,89 +140,3 @@
   background-color: hsl(238, 40%, 52%);
   justify-self: flex-end;
 }
-
-.addReplyForm {
-  background-color: hsl(0, 0%, 100%);
-  padding: 1rem;
-  margin: 1rem 0;
-  border-radius: 0.5rem;
-  display: grid;
-  grid-template-rows: auto auto;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  border-radius: 0.5rem;
-}
-
-.replyInput {
-  width: 100%;
-  height: 3rem;
-  border-color: hsl(223, 19%, 93%);
-  border-radius: 0.5rem;
-  font-family: inherit;
-  color: hsl(228, 12%, 44%);
-  grid-column: span 2;
-}
-
-.addReplyButton {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  color: hsl(0, 0%, 100%);
-  background-color: hsl(238, 40%, 52%);
-  grid-column: -2/-1;
-  justify-self: flex-end;
-}
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-height: 100vh;
-  background-color: hsla(0, 0%, 0%, 0.502);
-}
-
-.modalContainer {
-  position: absolute;
-  background-color: hsl(0, 0%, 100%);
-  border-radius: 0.5rem;
-  top: 30%;
-  left: 15%;
-  right: 15%;
-  z-index: 2;
-  box-shadow: 0 1rem 1rem 0.25rem hsla(0, 0%, 0%, 0.3);
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
-  width: 60%;
-}
-
-.modalButtonsContainer {
-  align-self: center;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  padding: 1rem;
-}
-
-.modalCancelButton {
-  border-radius: 0.5rem;
-  background-color: hsl(228, 12%, 44%);
-  color: hsl(0, 0%, 100%);
-  padding: 1rem;
-  font-weight: 600;
-}
-
-.modalDeleteButton {
-  border-radius: 0.5rem;
-  background-color: hsl(358, 79%, 66%);
-  color: hsl(0, 0%, 100%);
-  padding: 1rem;
-  font-weight: 600;
-}/*# sourceMappingURL=App.css.map */
