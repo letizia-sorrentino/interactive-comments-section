@@ -81,47 +81,57 @@ const CommentsList = () => {
     <>
       {/* Map over your comments data and render a Comment component for each comment:  */}
       <div>
-        {comments.map((comment) => (
-          <div key={comment.id}>
-            <CommentBox
-              comment={comment}
-              currentUser={user.username}
-              addScore={addScore}
-              subtractScore={subtractScore}
-              onReply={onReplyClick}
-              onUpdate={onUpdateClick}
-              onDelete={onDeleteClick}
-              showReplyForm={showReplyForm}
-            />
+        {comments.map(
+          (comment) => (
+            console.log(comment.id),
+            (
+              <div key={comment.id}>
+                <CommentBox
+                  comment={comment}
+                  currentUser={user.username}
+                  addScore={addScore}
+                  subtractScore={subtractScore}
+                  onReply={onReplyClick}
+                  onUpdate={onUpdateClick}
+                  onDelete={onDeleteClick}
+                  showReplyForm={showReplyForm}
+                />
 
-            {/* Map over the replies array of each comment and render a Comment component for each reply: */}
-            {comment.replies && comment.replies.length > 0 && (
-              <div className="replyContainer">
-                {comment.replies.map((reply) => (
-                  <CommentBox
-                    key={reply.id}
-                    comment={reply}
-                    currentUser={user.username}
-                    addScore={addScore}
-                    subtractScore={subtractScore}
-                    onReply={onReplyClick}
-                    onUpdate={onUpdateClick}
-                    onDelete={onDeleteClick}
-                    showReplyForm={showReplyForm}
+                {/* Map over the replies array of each comment and render a Comment component for each reply: */}
+                {comment.replies && comment.replies.length > 0 && (
+                  <div className="replyContainer">
+                    {comment.replies.map(
+                      (reply) => (
+                        console.log(reply.id),
+                        (
+                          <CommentBox
+                            key={reply.id}
+                            comment={reply}
+                            currentUser={user.username}
+                            addScore={addScore}
+                            subtractScore={subtractScore}
+                            onReply={onReplyClick}
+                            onUpdate={onUpdateClick}
+                            onDelete={onDeleteClick}
+                            showReplyForm={showReplyForm}
+                          />
+                        )
+                      )
+                    )}
+                  </div>
+                )}
+
+                {showModal === true && (
+                  <Modal
+                    comment={comment}
+                    onCancel={onCancelClick}
+                    onDelete={onModalDeleteClick}
                   />
-                ))}
+                )}
               </div>
-            )}
-
-            {showModal === true && (
-              <Modal
-                comment={comment}
-                onCancel={onCancelClick}
-                onDelete={onModalDeleteClick}
-              />
-            )}
-          </div>
-        ))}
+            )
+          )
+        )}
       </div>
 
       <CommentForm addComment={addComment} onSend={onSendClick} />
