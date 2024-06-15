@@ -35,10 +35,9 @@ const CommentsList = () => {
     );
   };
 
-  // function that takes a comment's id and open the ReplyForm component
+  //Comment event handlers
   const onReplyClick = (id: number) => {
     setShowReplyForm(id);
-    // console.log("replying to", id);
   };
 
   const onUpdateClick = (id: number) => {
@@ -48,6 +47,19 @@ const CommentsList = () => {
   const onDeleteClick = (id: number) => {
     setShowModal(true);
     console.log("clicked", id, showModal);
+  };
+
+  //Modal event handlers
+  const onCancelClick = () => {
+    setShowModal(false);
+  };
+
+  const onModalDeleteClick = (id: number) => {
+    setComments((prevComments) =>
+      prevComments.filter((comment) => comment.id !== id)
+    );
+    setShowModal(false);
+    console.log("clicked", id);
   };
 
   const addComment = (comment: string) => {
@@ -101,10 +113,17 @@ const CommentsList = () => {
                 ))}
               </div>
             )}
+
+            {showModal === true && (
+              <Modal
+                comment={comment}
+                onCancel={onCancelClick}
+                onDelete={onModalDeleteClick}
+              />
+            )}
           </div>
         ))}
       </div>
-      {showModal === true && <Modal />}
 
       <CommentForm addComment={addComment} onSend={onSendClick} />
     </>
