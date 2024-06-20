@@ -3,10 +3,10 @@ import { CommentData } from "../types/types";
 export interface ModalProps {
   comment: CommentData;
   onCancel: () => void;
-  onDelete: (id: number) => void;
+  onModalDelete: (id: number, currentUser: string) => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ comment, onCancel, onDelete }) => {
+const Modal: React.FC<ModalProps> = ({ comment, onCancel, onModalDelete }) => {
   return (
     <div className="modal">
       <div className="modalContainer" key={comment.id}>
@@ -21,7 +21,7 @@ const Modal: React.FC<ModalProps> = ({ comment, onCancel, onDelete }) => {
           </button>
           <button
             className="modalDeleteButton"
-            onClick={() => onDelete(comment.id)}
+            onClick={() => onModalDelete(comment.id, comment.user.username)}
           >
             YES, DELETE
           </button>
