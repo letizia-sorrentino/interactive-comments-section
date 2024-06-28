@@ -148,31 +148,6 @@
   justify-self: flex-end;
 }
 
-.replyContainer {
-  background-color: hsl(0, 0%, 100%);
-  margin: 1rem 0 1rem 2rem;
-  padding: 1rem;
-  border-radius: 0.5rem;
-}
-
-.replyHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.replyMessage {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  color: hsl(228, 12%, 44%);
-  padding: 0.5rem;
-}
-.replyMessage .replyingTo {
-  color: hsl(238, 40%, 52%);
-  font-weight: 800;
-}
-
 .addReplyForm {
   background-color: hsl(0, 0%, 100%);
   padding: 1rem;

@@ -6,7 +6,6 @@ const initialData: CommentThreadData = data;
 
 export interface CommentFormProps {
   addComment: (comment: string) => void;
-  onSend: (id: number) => void;
 }
 
 const CommentForm = ({ addComment }: CommentFormProps) => {

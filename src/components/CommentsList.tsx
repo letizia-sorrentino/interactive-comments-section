@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import moment from "moment";
+import { v4 as uuidv4 } from "uuid";
 import { CommentData, CommentThreadData, UserData } from "../types/types";
 import data from "../data.json";
 import CommentBox from "./CommentBox";
@@ -15,19 +16,20 @@ const CommentsList = () => {
   const [comments, setComments] = useState<CommentData[]>(initialData.comments);
   const [showReplyForm, setShowReplyForm] = useState<number>();
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [commentToDelete, setCommentToDelete] = useState<number | null>(null);
 
   const getData = () => {
     try {
       //fixed the data to have unique id
-      initialData.comments.forEach((comment, index) => {
-        comment.id = Math.floor(index + Math.random());
-        comment.replies.forEach((reply, index) => {
-          reply.id = Math.floor(index + Math.random());
+      initialData.comments.forEach((comment) => {
+        comment.id = uuidv4(); // Assign a unique ID
+        comment.replies.forEach((reply) => {
+          reply.id = uuidv4(); // Assign a unique ID
         });
       });
 
       setComments(initialData.comments);
-      // console.log(comments);
+      console.log(comments);
     } catch (error) {
       console.error(error);
     }
@@ -67,15 +69,13 @@ const CommentsList = () => {
 
   const onDeleteClick = (id: number) => {
     setShowModal(true);
-    // console.log("clicked", id, showModal);
+    setCommentToDelete(id);
+    console.log("clicked", id, showModal, user.username);
   };
 
   const addComment = (comment: string) => {
-    const maxId = Math.max(...comments.map((c) => c.id));
-
     const newComment: CommentData = {
-      // id: Date.now() + Math.random(),
-      id: Math.floor(maxId + 1),
+      id: uuidv4(),
       content: comment,
       createdAt: moment(new Date()).fromNow(),
       score: 0,
@@ -83,11 +83,6 @@ const CommentsList = () => {
       replies: [],
     };
     setComments((prevComments) => [...prevComments, newComment]);
-    // console.log("new comment:", newComment.id);
-  };
-
-  const onSendClick = (id: number) => {
-    // console.log("clicked", id);
   };
 
   //Modal event handlers
@@ -96,16 +91,13 @@ const CommentsList = () => {
   };
 
   const onModalDeleteClick = (id: number, currentUser: string) => {
-    const commentsToDelete = [...comments];
-    const indexOf = commentsToDelete.findIndex((comment) => {
-      return comment.id === id && comment.user.username === currentUser;
-    });
-    if (indexOf !== -1) {
-      commentsToDelete.splice(indexOf, 1);
-      setComments(commentsToDelete);
-      console.log("deleted", id, currentUser);
+    if (user.username === currentUser) {
+      setComments(comments.filter((comment) => comment.id !== id));
+    } else {
+      alert("You can only delete your own comments!");
     }
     setShowModal(false);
+    console.log("deleted", commentToDelete, id, currentUser);
   };
 
   return (
@@ -128,11 +120,10 @@ const CommentsList = () => {
             {/* Map over the replies array of each comment and render a Comment component for each reply: */}
             {comment.replies && comment.replies.length > 0 && (
               <div className="replyContainer">
-                {comment.replies.map((reply) => (
-                  // console.log(reply.id),
+                {comment.replies.map((comment) => (
                   <CommentBox
-                    key={reply.id}
-                    comment={reply}
+                    key={comment.id}
+                    comment={comment}
                     currentUser={user.username}
                     addScore={addScore}
                     subtractScore={subtractScore}
@@ -156,7 +147,7 @@ const CommentsList = () => {
         ))}
       </div>
 
-      <CommentForm addComment={addComment} onSend={onSendClick} />
+      <CommentForm addComment={addComment} />
     </>
   );
 };
