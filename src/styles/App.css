@@ -148,6 +148,10 @@
   justify-self: flex-end;
 }
 
+.replyContainer {
+  margin-left: 3rem;
+}
+
 .addReplyForm {
   background-color: hsl(0, 0%, 100%);
   padding: 1rem;

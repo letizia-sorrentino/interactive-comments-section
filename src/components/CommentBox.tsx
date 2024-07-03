@@ -14,7 +14,7 @@ export interface CommentProps {
   subtractScore: (id: number) => void;
   onReply: (id: number) => void;
   showReplyForm: number | undefined;
-  onDelete: (id: number) => void;
+  onDelete: (comment: CommentData) => void;
   onUpdate: (id: number) => void;
 }
 
@@ -67,10 +67,7 @@ const CommentBox: React.FC<CommentProps> = ({
           </button>
         ) : (
           <>
-            <button
-              className="deleteButton"
-              onClick={() => onDelete(comment.id)}
-            >
+            <button className="deleteButton" onClick={() => onDelete(comment)}>
               {" "}
               <img className="iconDelete" src={IconDelete} alt="iconDelete" />
               Delete

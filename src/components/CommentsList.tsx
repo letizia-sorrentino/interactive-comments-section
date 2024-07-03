@@ -16,14 +16,15 @@ const CommentsList = () => {
   const [comments, setComments] = useState<CommentData[]>(initialData.comments);
   const [showReplyForm, setShowReplyForm] = useState<number>();
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [commentToDelete, setCommentToDelete] = useState<number | null>(null);
+  const [commentToDelete, setCommentToDelete] = useState<CommentData>();
+  // useState<number | null>(null);
 
   const getData = () => {
     try {
       //fixed the data to have unique id
       initialData.comments.forEach((comment) => {
         comment.id = uuidv4(); // Assign a unique ID
-        comment.replies.forEach((reply) => {
+        comment.replies?.forEach((reply) => {
           reply.id = uuidv4(); // Assign a unique ID
         });
       });
@@ -57,7 +58,7 @@ const CommentsList = () => {
     );
   };
 
-  //Comment event handlers
+  // Functions to handle click events (e.g., to edit or reply to a comment)
   const onReplyClick = (id: number) => {
     setShowReplyForm(id);
     // console.log("clicked", id);
@@ -67,10 +68,13 @@ const CommentsList = () => {
     // console.log("clicked", id);
   };
 
-  const onDeleteClick = (id: number) => {
+  const onDeleteClick = (comment: CommentData) => {
     setShowModal(true);
-    setCommentToDelete(id);
-    console.log("clicked", id, showModal, user.username);
+    setCommentToDelete(
+      comment
+      // comments.find((comment) => comment.id === id)
+    );
+    console.log("onDelete clicked", comment.id, user.username);
   };
 
   const addComment = (comment: string) => {
@@ -90,14 +94,29 @@ const CommentsList = () => {
     setShowModal(false);
   };
 
-  const onModalDeleteClick = (id: number, currentUser: string) => {
-    if (user.username === currentUser) {
+  const handleDelete = (id: number, currentUser: string) => {
+    const isTopLevelComment = comments.some((comment) => comment.id === id);
+
+    if (
+      user.username === currentUser &&
+      isTopLevelComment
+      // &&
+      // commentToDelete === id
+    ) {
       setComments(comments.filter((comment) => comment.id !== id));
     } else {
-      alert("You can only delete your own comments!");
+      setComments(
+        comments.map((comment) => ({
+          ...comment,
+          replies: comment.replies?.filter((reply) => reply.id !== id),
+        }))
+      );
+      // setComments(isReplyComment.filter((reply) => reply.id !== id));
+      // setComments(comments.replies.filter((reply) => reply.id !== id));
+      // alert("Log in to delete your own comments!");
     }
     setShowModal(false);
-    console.log("deleted", commentToDelete, id, currentUser);
+    console.log("deleted", id, currentUser);
   };
 
   return (
@@ -135,16 +154,18 @@ const CommentsList = () => {
                 ))}
               </div>
             )}
-
-            {showModal === true && (
-              <Modal
-                comment={comment}
-                onCancel={onCancelClick}
-                onModalDelete={onModalDeleteClick}
-              />
-            )}
           </div>
         ))}
+      </div>
+      <div>
+        {" "}
+        {showModal && commentToDelete && (
+          <Modal
+            comment={commentToDelete}
+            onCancel={onCancelClick}
+            onModalDelete={handleDelete}
+          />
+        )}
       </div>
 
       <CommentForm addComment={addComment} />
