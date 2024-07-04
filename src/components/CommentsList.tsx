@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import moment from "moment";
-import { v4 as uuidv4 } from "uuid";
 import { CommentData, CommentThreadData, UserData } from "../types/types";
 import data from "../data.json";
 import CommentBox from "./CommentBox";
@@ -17,18 +16,9 @@ const CommentsList = () => {
   const [showReplyForm, setShowReplyForm] = useState<number>();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [commentToDelete, setCommentToDelete] = useState<CommentData>();
-  // useState<number | null>(null);
 
   const getData = () => {
     try {
-      //fixed the data to have unique id
-      initialData.comments.forEach((comment) => {
-        comment.id = uuidv4(); // Assign a unique ID
-        comment.replies?.forEach((reply) => {
-          reply.id = uuidv4(); // Assign a unique ID
-        });
-      });
-
       setComments(initialData.comments);
       console.log(comments);
     } catch (error) {
@@ -75,11 +65,12 @@ const CommentsList = () => {
       // comments.find((comment) => comment.id === id)
     );
     console.log("onDelete clicked", comment.id, user.username);
+    console.log(typeof comment.id);
   };
 
   const addComment = (comment: string) => {
     const newComment: CommentData = {
-      id: uuidv4(),
+      id: Number(new Date()) + Math.floor(Math.random() * 1000),
       content: comment,
       createdAt: moment(new Date()).fromNow(),
       score: 0,
@@ -96,14 +87,10 @@ const CommentsList = () => {
 
   const handleDelete = (id: number, currentUser: string) => {
     const isTopLevelComment = comments.some((comment) => comment.id === id);
-
-    if (
-      user.username === currentUser &&
-      isTopLevelComment
-      // &&
-      // commentToDelete === id
-    ) {
+    //Deletes the comment if it’s a top-level comment and the user matches
+    if (user.username === currentUser && isTopLevelComment) {
       setComments(comments.filter((comment) => comment.id !== id));
+      //Deletes a reply if the id is a reply’s ID
     } else {
       setComments(
         comments.map((comment) => ({
@@ -111,9 +98,6 @@ const CommentsList = () => {
           replies: comment.replies?.filter((reply) => reply.id !== id),
         }))
       );
-      // setComments(isReplyComment.filter((reply) => reply.id !== id));
-      // setComments(comments.replies.filter((reply) => reply.id !== id));
-      // alert("Log in to delete your own comments!");
     }
     setShowModal(false);
     console.log("deleted", id, currentUser);

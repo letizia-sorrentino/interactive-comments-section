@@ -3,7 +3,7 @@ import { CommentData } from "../types/types";
 export interface ModalProps {
   comment: CommentData;
   onCancel: () => void;
-  onModalDelete: (id: number, currentUser: string) => void;
+  onModalDelete: (id: string, currentUser: string) => void;
 }
 
 const Modal: React.FC<ModalProps> = ({ comment, onCancel, onModalDelete }) => {
