@@ -15,6 +15,7 @@ const CommentsList = () => {
   const [comments, setComments] = useState<CommentData[]>(initialData.comments);
   const [showReplyForm, setShowReplyForm] = useState<number>();
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [commentToUpdate, setCommentToUpdate] = useState<CommentData>();
   const [commentToDelete, setCommentToDelete] = useState<CommentData>();
 
   const getData = () => {
@@ -51,21 +52,21 @@ const CommentsList = () => {
   // Functions to handle click events (e.g., to edit or reply to a comment)
   const onReplyClick = (id: number) => {
     setShowReplyForm(id);
-    // console.log("clicked", id);
   };
 
-  const onUpdateClick = (id: number) => {
-    // console.log("clicked", id);
+  const onUpdateClick = (comment: CommentData) => {
+    setCommentToUpdate(comment);
+    console.log("onUpdateClick", comment.id, user.username);
   };
 
   const onDeleteClick = (comment: CommentData) => {
     setShowModal(true);
-    setCommentToDelete(
-      comment
-      // comments.find((comment) => comment.id === id)
-    );
-    console.log("onDelete clicked", comment.id, user.username);
-    console.log(typeof comment.id);
+    setCommentToDelete(comment);
+    console.log("onDeleteClick", comment.id, user.username);
+  };
+
+  const onCancelClick = () => {
+    setShowModal(false);
   };
 
   const addComment = (comment: string) => {
@@ -81,10 +82,6 @@ const CommentsList = () => {
   };
 
   //Modal event handlers
-  const onCancelClick = () => {
-    setShowModal(false);
-  };
-
   const handleDelete = (id: number, currentUser: string) => {
     const isTopLevelComment = comments.some((comment) => comment.id === id);
     //Deletes the comment if it’s a top-level comment and the user matches

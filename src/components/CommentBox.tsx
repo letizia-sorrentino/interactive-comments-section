@@ -15,7 +15,7 @@ export interface CommentProps {
   onReply: (id: number) => void;
   showReplyForm: number | undefined;
   onDelete: (comment: CommentData) => void;
-  onUpdate: (id: number) => void;
+  onUpdate: (comment: CommentData) => void;
 }
 
 const CommentBox: React.FC<CommentProps> = ({
@@ -72,10 +72,7 @@ const CommentBox: React.FC<CommentProps> = ({
               <img className="iconDelete" src={IconDelete} alt="iconDelete" />
               Delete
             </button>
-            <button
-              className="updateButton"
-              onClick={() => onUpdate(comment.id)}
-            >
+            <button className="updateButton" onClick={() => onUpdate(comment)}>
               {" "}
               <img className="iconUpdate" src={IconUpdate} alt="iconUpdate" />
               Edit
