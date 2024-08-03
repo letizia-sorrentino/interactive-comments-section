@@ -1,5 +1,5 @@
-import CommentsList from "./components/CommentsList";
-import Footer from "./components/Footer";
+import CommentsList from "./components/CommentsList/CommentsList";
+import Footer from "./components/Footer/Footer";
 import "./styles/App.css";
 
 const App = () => {

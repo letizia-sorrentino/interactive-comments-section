@@ -1,0 +1,49 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: hsla(0, 0%, 0%, 0.502);
+}
+
+.modalContainer {
+  position: absolute;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 0.5rem;
+  top: 30%;
+  left: 15%;
+  right: 15%;
+  z-index: 2;
+  box-shadow: 0 1rem 1rem 0.25rem hsla(0, 0%, 0%, 0.3);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  width: 60%;
+}
+
+.modalButtonsContainer {
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.modalCancelButton {
+  border-radius: 0.5rem;
+  background-color: hsl(228, 12%, 44%);
+  color: hsl(0, 0%, 100%);
+  padding: 0.5rem;
+  font-weight: 600;
+}
+
+.modalDeleteButton {
+  border-radius: 0.5rem;
+  background-color: hsl(358, 79%, 66%);
+  color: hsl(0, 0%, 100%);
+  padding: 0.5rem;
+  font-weight: 600;
+}
