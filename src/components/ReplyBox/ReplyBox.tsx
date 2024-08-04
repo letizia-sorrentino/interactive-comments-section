@@ -6,7 +6,7 @@ import IconReply from "../../assets/images/icon-reply.svg";
 import IconDelete from "../../assets/images/icon-delete.svg";
 import IconUpdate from "../../assets/images/icon-edit.svg";
 import ReplyForm from "../ReplyForm/ReplyForm";
-import "./CommentBox.css";
+import "./ReplyBox.css";
 
 //Define the properties that will be passed as props to the Comment component from the parent component:
 export interface CommentProps {
@@ -17,7 +17,7 @@ export interface CommentProps {
   onDeleteClick: (comment: CommentData) => void;
 }
 
-const CommentBox: React.FC<CommentProps> = ({
+const ReplyBox: React.FC<CommentProps> = ({
   comment,
   currentUser,
   addScore,
@@ -29,6 +29,12 @@ const CommentBox: React.FC<CommentProps> = ({
   const onReplyClick = () => {
     setShowReplyForm((prevShowReplyForm) => !prevShowReplyForm);
   };
+
+  // const onUpdateClick = (comment: CommentData) => {
+  //   setCommentToUpdate(comment);
+  //   setShowUpdateForm(true);
+  //   console.log("onUpdateClick", comment.id, user.username);
+  // };
 
   // const handleReply = (comment: string, parentId: number) => {
   //   const newReply: CommentData = {
@@ -117,4 +123,4 @@ const CommentBox: React.FC<CommentProps> = ({
   );
 };
 
-export default CommentBox;
+export default ReplyBox;

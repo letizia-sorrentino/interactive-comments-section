@@ -1,22 +1,12 @@
-.replyContainer {
-  margin-left: 3rem;
-  position: relative;
-}
-
-.replyContainer::before {
-  background: #eaecf1;
-  content: "";
-  top: 0;
-  height: 95%;
-  position: absolute;
-  width: 3px;
-}
-
-.addReplyForm {
-  background-color: white;
-  padding: 1rem;
+.formContainer {
   margin: 1rem 0;
   border-radius: 0.5rem;
+  background-color: #ffffff;
+}
+
+
+.replyForm {
+  padding: 1rem;
 }
 
 .replyInput {
@@ -27,6 +17,11 @@
   font-family: inherit;
   color: #63687e;
   margin-bottom: 1rem;
+}
+
+.replyHeader {
+  display: flex;
+  justify-content: space-between;
 }
 
 .addReplyButton {

@@ -3,9 +3,10 @@ import moment from "moment";
 import { CommentData, CommentThreadData, UserData } from "../../types/types";
 import data from "../../data.json";
 import CommentBox from "../CommentBox/CommentBox";
+import ReplyBox from "../ReplyBox/ReplyBox";
 import Modal from "../Modal/Modal";
 import CommentForm from "../CommentForm/CommentForm";
-import "./CommentsList.css";
+
 
 // initial data
 const initialData: CommentThreadData = data;
@@ -13,10 +14,8 @@ const initialData: CommentThreadData = data;
 const CommentsList = () => {
   // state hook to store comments
   const [user] = useState<UserData>(initialData.currentUser);
-  const [comments, setComments] = useState<CommentData[]>(initialData.comments);
-  //const [showUpdateForm, setShowUpdateForm] = useState<boolean>(false);
+  const [comments, setComments] = useState<CommentData[]>(initialData.comments);  
   const [showModal, setShowModal] = useState<boolean>(false);
-  // const [commentToUpdate, setCommentToUpdate] = useState<CommentData>();
   const [commentToDelete, setCommentToDelete] = useState<CommentData>();
 
   const getData = () => {
@@ -58,12 +57,6 @@ const CommentsList = () => {
       )
     );
   };
-
-  // const onUpdateClick = (comment: CommentData) => {
-  //   setCommentToUpdate(comment);
-  //   setShowUpdateForm(true);
-  //   console.log("onUpdateClick", comment.id, user.username);
-  // };
 
   const onDeleteClick = (comment: CommentData) => {
     setShowModal(true);
@@ -127,20 +120,18 @@ const CommentsList = () => {
               currentUser={user.username}
               addScore={addScore}
               subtractScore={subtractScore}
-              // onUpdate={}
               onDeleteClick={onDeleteClick}
             />
             {/* Map over the replies array of each comment and render a Comment component for each reply: */}
             {comment.replies && comment.replies.length > 0 && (
               <div className="replyContainer">
-                {comment.replies.map((comment) => (
-                  <CommentBox
-                    key={comment.id}
-                    comment={comment}
+                {comment.replies.map((reply) => (
+                  <ReplyBox
+                    key={reply.id}
+                    comment={reply}
                     currentUser={user.username}
                     addScore={addScore}
                     subtractScore={subtractScore}
-                    //  onUpdateClick={onUpdateClick}
                     onDeleteClick={onDeleteClick}
                   />
                 ))}

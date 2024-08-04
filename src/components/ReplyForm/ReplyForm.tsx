@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { UserData, CommentThreadData } from "../../types/types";
 import data from "../../data.json";
+import "./ReplyForm.css";
 
 const initialData: CommentThreadData = data;
 
@@ -43,7 +44,7 @@ const ReplyForm: React.FC<ReplyFormProps> = ({
   };
 
   return (
-    <form onSubmit={handleReplySubmit} className="addReplyForm">
+    <form onSubmit={handleReplySubmit} className="replyForm">
       <textarea
         className="replyInput"
         placeholder={getPlaceholderText()}
