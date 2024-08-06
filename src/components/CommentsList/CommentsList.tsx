@@ -3,10 +3,8 @@ import moment from "moment";
 import { CommentData, CommentThreadData, UserData } from "../../types/types";
 import data from "../../data.json";
 import CommentBox from "../CommentBox/CommentBox";
-import ReplyBox from "../ReplyBox/ReplyBox";
 import Modal from "../Modal/Modal";
 import CommentForm from "../CommentForm/CommentForm";
-
 
 // initial data
 const initialData: CommentThreadData = data;
@@ -14,7 +12,7 @@ const initialData: CommentThreadData = data;
 const CommentsList = () => {
   // state hook to store comments
   const [user] = useState<UserData>(initialData.currentUser);
-  const [comments, setComments] = useState<CommentData[]>(initialData.comments);  
+  const [comments, setComments] = useState<CommentData[]>(initialData.comments);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [commentToDelete, setCommentToDelete] = useState<CommentData>();
 
@@ -58,6 +56,7 @@ const CommentsList = () => {
     );
   };
 
+
   const onDeleteClick = (comment: CommentData) => {
     setShowModal(true);
     setCommentToDelete(comment);
@@ -79,16 +78,18 @@ const CommentsList = () => {
     };
     setComments((prevComments) => [...prevComments, newComment]);
   };
-
-  //update comment
-  // const handleEdit = (id: number, updatedComment: string) => {
-  //   const updatedComments = comments.map((comment) =>
-  //     comment.id === id ? { ...comment, content: updatedComment } : comment
-  //   );
-  //   setComments(updatedComments);
-  //   setCommentToUpdate(undefined);
-  //   console.log("updated", id, updatedComment);
-  // };
+  const handleReply = (comment: string) => {
+    const newReply: CommentData = {
+      id: Number(new Date()) + Math.floor(Math.random() * 1000),
+      content: comment,
+      createdAt: moment(new Date()).fromNow(),
+      score: 0,
+      user: user!,
+      replies: [],
+    };
+    setComments((prevComments) => [...prevComments, newReply]);
+    console.log("reply", comment, newReply.id);
+  };
 
   //Modal event handlers
   const handleDelete = (id: number, currentUser: string) => {
@@ -121,17 +122,19 @@ const CommentsList = () => {
               addScore={addScore}
               subtractScore={subtractScore}
               onDeleteClick={onDeleteClick}
+              addReply={handleReply}
             />
             {/* Map over the replies array of each comment and render a Comment component for each reply: */}
             {comment.replies && comment.replies.length > 0 && (
               <div className="replyContainer">
                 {comment.replies.map((reply) => (
-                  <ReplyBox
+                  <CommentBox
                     key={reply.id}
                     comment={reply}
                     currentUser={user.username}
                     addScore={addScore}
                     subtractScore={subtractScore}
+                    addReply={handleReply}
                     onDeleteClick={onDeleteClick}
                   />
                 ))}
@@ -140,8 +143,6 @@ const CommentsList = () => {
           </div>
         ))}
       </div>
-
-      {/* {showUpdateForm && <UpdateForm handleEdit={handleEdit(comment.id, comment)} />} */}
 
       <div>
         {showModal && commentToDelete && (

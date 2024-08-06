@@ -14,6 +14,7 @@ export interface CommentProps {
   currentUser: string;
   addScore: (id: number) => void;
   subtractScore: (id: number) => void;
+  addReply: (reply: string) => void;
   onDeleteClick: (comment: CommentData) => void;
 }
 
@@ -22,30 +23,21 @@ const CommentBox: React.FC<CommentProps> = ({
   currentUser,
   addScore,
   subtractScore,
+  addReply,
   onDeleteClick: onDelete,
 }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
+  // const [showEditForm, setShowEditForm] = useState(false);
+  // const [commentToUpdate, setCommentToUpdate] = useState<CommentData>();
 
   const onReplyClick = () => {
     setShowReplyForm((prevShowReplyForm) => !prevShowReplyForm);
   };
 
-  // const handleReply = (comment: string, parentId: number) => {
-  //   const newReply: CommentData = {
-  //     id: Number(new Date()) + Math.floor(Math.random() * 1000),
-  //     content: comment,
-  //     createdAt: moment(new Date()).fromNow(),
-  //     score: 0,
-  //     user: user,
-  //     replies: [],
-  //   };
-  //   setComments((prevComments) =>
-  //     prevComments.map((comment) =>
-  //       comment.id === parentId
-  //         ? { ...comment, replies: [...comment.replies, newReply] }
-  //         : comment
-  //     )
-  //   );
+  // const onEditClick = () => {
+  //   // setCommentToUpdate(comment);
+  //   setShowEditForm(true);
+  //   console.log("onEditClick", showEditForm, comment.id);
   // };
 
   return (
@@ -109,7 +101,10 @@ const CommentBox: React.FC<CommentProps> = ({
       <div className="formContainer">
         {showReplyForm && (
           <div>
-            <ReplyForm replyingTo={comment.user} addReply={() => {}} />
+            <ReplyForm
+              replyingTo={comment.user}
+              addReply={addReply}
+            />
           </div>
         )}
       </div>

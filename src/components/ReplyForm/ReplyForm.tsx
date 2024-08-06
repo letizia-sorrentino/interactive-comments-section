@@ -38,8 +38,11 @@ const ReplyForm: React.FC<ReplyFormProps> = ({
 
   const handleReplySubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addReply(newReply);
-    setNewReply("");
+    if (newReply.trim() !== "") {
+      // Add a check to prevent empty replies
+      addReply(newReply);
+      setNewReply("");
+    }
     console.log("new reply:", newReply);
   };
 
@@ -48,11 +51,14 @@ const ReplyForm: React.FC<ReplyFormProps> = ({
       <textarea
         className="replyInput"
         placeholder={getPlaceholderText()}
+        value={newReply}
         onChange={handleReplyChange}
       ></textarea>
       <div className="replyHeader">
         <img className="avatar" src={user.image.png} alt={user.username} />
-        <button className="addReplyButton">REPLY</button>
+        <button type="submit" className="addReplyButton">
+          REPLY
+        </button>
       </div>
     </form>
   );

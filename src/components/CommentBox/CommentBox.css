@@ -105,3 +105,18 @@
 .deleteButton:hover {
   color: hsl(357, 100%, 86%);
 }
+
+/* Reply containter */
+.replyContainer {
+  margin-left: 3rem;
+  position: relative;
+}
+
+.replyContainer::before {
+  background: #eaecf1;
+  content: "";
+  top: 0;
+  height: 95%;
+  position: absolute;
+  width: 3px;
+}
