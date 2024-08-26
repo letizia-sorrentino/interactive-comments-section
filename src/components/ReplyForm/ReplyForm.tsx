@@ -17,6 +17,7 @@ const ReplyForm: React.FC<ReplyFormProps> = ({
   // state hook to store comments
   const [user, setUser] = useState<UserData>(initialData.currentUser);
   const [newReply, setNewReply] = useState<string>("");
+  const [showReplyForm, setShowReplyForm] = useState(false);
 
   useEffect(() => {
     //sending initial data to comments in state
@@ -42,8 +43,9 @@ const ReplyForm: React.FC<ReplyFormProps> = ({
       // Add a check to prevent empty replies
       addReply(newReply);
       setNewReply("");
+      setShowReplyForm(false);
     }
-    console.log("new reply:", newReply);
+    console.log("new reply:", newReply, showReplyForm);
   };
 
   return (

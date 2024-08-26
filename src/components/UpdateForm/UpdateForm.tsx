@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CommentData } from "../types/types";
+import { CommentData } from "../../types/types";
 
 export interface UpdateFormProps {
   comment: CommentData;

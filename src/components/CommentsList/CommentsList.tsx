@@ -56,7 +56,6 @@ const CommentsList = () => {
     );
   };
 
-
   const onDeleteClick = (comment: CommentData) => {
     setShowModal(true);
     setCommentToDelete(comment);
@@ -78,6 +77,7 @@ const CommentsList = () => {
     };
     setComments((prevComments) => [...prevComments, newComment]);
   };
+
   const handleReply = (comment: string) => {
     const newReply: CommentData = {
       id: Number(new Date()) + Math.floor(Math.random() * 1000),
@@ -87,7 +87,15 @@ const CommentsList = () => {
       user: user!,
       replies: [],
     };
-    setComments((prevComments) => [...prevComments, newReply]);
+    // setComments((prevComments) => [...prevComments, newReply]);
+    setComments((prevComments) =>
+      prevComments.map((comment) => {
+        return {
+          ...comment,
+          replies: [...(comment.replies || []), newReply],
+        };
+      })
+    );
     console.log("reply", comment, newReply.id);
   };
 

@@ -27,18 +27,18 @@ const CommentBox: React.FC<CommentProps> = ({
   onDeleteClick: onDelete,
 }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
-  // const [showEditForm, setShowEditForm] = useState(false);
-  // const [commentToUpdate, setCommentToUpdate] = useState<CommentData>();
+  const [showEditForm, setShowEditForm] = useState(false);
+  const [commentToUpdate, setCommentToUpdate] = useState<CommentData>();
 
   const onReplyClick = () => {
-    setShowReplyForm((prevShowReplyForm) => !prevShowReplyForm);
+    setShowReplyForm(true);
   };
 
-  // const onEditClick = () => {
-  //   // setCommentToUpdate(comment);
-  //   setShowEditForm(true);
-  //   console.log("onEditClick", showEditForm, comment.id);
-  // };
+  const onEditClick = () => {
+    setCommentToUpdate(commentToUpdate);
+    setShowEditForm(true);
+    console.log("onEditClick", showEditForm, comment.id, comment.content);
+  };
 
   return (
     <div>
@@ -89,7 +89,7 @@ const CommentBox: React.FC<CommentProps> = ({
                 <img className="iconDelete" src={IconDelete} alt="iconDelete" />
                 Delete
               </button>
-              <button className="updateButton" onClick={() => {}}>
+              <button className="updateButton" onClick={onEditClick}>
                 {" "}
                 <img className="iconUpdate" src={IconUpdate} alt="iconUpdate" />
                 Edit
@@ -101,10 +101,7 @@ const CommentBox: React.FC<CommentProps> = ({
       <div className="formContainer">
         {showReplyForm && (
           <div>
-            <ReplyForm
-              replyingTo={comment.user}
-              addReply={addReply}
-            />
+            <ReplyForm replyingTo={comment.user} addReply={addReply} />
           </div>
         )}
       </div>
