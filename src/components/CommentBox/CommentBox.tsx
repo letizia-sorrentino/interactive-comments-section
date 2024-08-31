@@ -111,7 +111,15 @@ const CommentBox: React.FC<CommentProps> = ({
         )}
         {showEditForm && (
           <div>
-            <UpdateForm handleEdit={handleEdit} comment={comment} />
+            <UpdateForm
+              handleEdit={handleEdit}
+              comment={comment}
+              currentUser={currentUser}
+              addScore={addScore}
+              subtractScore={subtractScore}
+              addReply={addReply}
+              onDeleteClick={onDelete}
+            />
           </div>
         )}
       </div>
