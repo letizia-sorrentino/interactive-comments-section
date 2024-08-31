@@ -25,7 +25,7 @@ const UpdateForm: React.FC<UpdateFormProps> = ({
   comment,
   addScore,
   subtractScore,
-  addReply,
+  // addReply,
   handleEdit,
   onDeleteClick: onDelete,
 }) => {
@@ -47,34 +47,46 @@ const UpdateForm: React.FC<UpdateFormProps> = ({
     <>
       <form className="updateCommentForm">
         <div className="updateCommentHeader">
-          <img className="avatar" src={user.image.png} alt={user.username} />
-          <p className="userName">{comment.user.username}</p>
-          {comment.user.username === currentUser && (
-            <span className="currentUser">you</span>
-          )}
-          <p className="createdAt">{comment.createdAt}</p>
-          {comment.user.username !== currentUser ? (
-            <button className="replyButton" onClick={() => {}}>
-              <img className="iconReply" src={IconReply} alt="iconReply" />{" "}
-              Reply
-            </button>
-          ) : (
-            <>
-              <button
-                className="deleteButton"
-                onClick={() => onDelete(comment)}
-              >
-                {" "}
-                <img className="iconDelete" src={IconDelete} alt="iconDelete" />
-                Delete
+          <div className="userNameInfoContainer">
+            <img className="avatar" src={user.image.png} alt={user.username} />
+            <p className="userName">{comment.user.username}</p>
+            {comment.user.username === currentUser && (
+              <span className="currentUser">you</span>
+            )}
+            <p className="createdAt">{comment.createdAt}</p>
+          </div>
+          <div>
+            {comment.user.username !== currentUser ? (
+              <button className="replyButton" onClick={() => {}}>
+                <img className="iconReply" src={IconReply} alt="iconReply" />{" "}
+                Reply
               </button>
-              <button className="updateButton" onClick={() => {}}>
-                {" "}
-                <img className="iconUpdate" src={IconUpdate} alt="iconUpdate" />
-                Edit
-              </button>
-            </>
-          )}
+            ) : (
+              <>
+                <button
+                  className="deleteButton"
+                  onClick={() => onDelete(comment)}
+                >
+                  {" "}
+                  <img
+                    className="iconDelete"
+                    src={IconDelete}
+                    alt="iconDelete"
+                  />
+                  Delete
+                </button>
+                <button className="editButton" onClick={() => {}}>
+                  {" "}
+                  <img
+                    className="iconUpdate"
+                    src={IconUpdate}
+                    alt="iconUpdate"
+                  />
+                  Edit
+                </button>
+              </>
+            )}
+          </div>
         </div>
         <textarea
           className="updateInput"
@@ -97,10 +109,10 @@ const UpdateForm: React.FC<UpdateFormProps> = ({
               onClick={() => subtractScore(comment.id)}
             ></img>
           </div>
+          <button className="updateButton" onClick={handleUpdateSubmit}>
+            Update
+          </button>
         </div>
-        <button className="updateButton" onClick={handleUpdateSubmit}>
-          Update
-        </button>
       </form>
     </>
   );

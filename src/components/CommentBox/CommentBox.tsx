@@ -94,7 +94,7 @@ const CommentBox: React.FC<CommentProps> = ({
                 <img className="iconDelete" src={IconDelete} alt="iconDelete" />
                 Delete
               </button>
-              <button className="updateButton" onClick={onEditClick(comment)}>
+              <button className="editButton" onClick={onEditClick(comment)}>
                 {" "}
                 <img className="iconUpdate" src={IconUpdate} alt="iconUpdate" />
                 Edit

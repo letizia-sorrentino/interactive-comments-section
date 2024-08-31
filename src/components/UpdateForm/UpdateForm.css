@@ -1,0 +1,40 @@
+    .updateCommentForm {
+        padding: 1rem;
+    }
+
+    .updateCommentHeader {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .userNameInfoContainer {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .updateInput {
+        width: 100%;
+        height: 3rem;
+        border-color: #eaecf1;
+        border-radius: 0.5rem;
+        font-family: inherit;
+        color: #63687e;
+        margin-bottom: 1rem;
+    }
+
+
+    .updateButton {
+        border-radius: 8px;
+        border: 1px solid transparent;
+        padding: 0.6em 1.2em;
+        font-size: 1em;
+        font-weight: 500;
+        font-family: inherit;
+        cursor: pointer;
+        transition: border-color 0.25s;
+        color: white;
+        background-color: #5457b6;
+        justify-self: flex-end;
+    }
