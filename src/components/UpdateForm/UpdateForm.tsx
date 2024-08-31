@@ -3,38 +3,34 @@ import { CommentData } from "../../types/types";
 
 export interface UpdateFormProps {
   comment: CommentData;
-  id: number;
-  handleEdit: (id: number, comment: string) => void;
-  updatedComment: string;
+  handleEdit: (comment: CommentData) => void;
 }
 
-const UpdateForm: React.FC<UpdateFormProps> = ({ id, handleEdit }) => {
+const UpdateForm: React.FC<UpdateFormProps> = ({ comment, handleEdit }) => {
+  // const [commentToUpdate, setCommentToUpdate] = useState<CommentData>();
   const [updatedComment, setUpdatedComment] = useState<string>("");
+
 
   const handleUpdateChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setUpdatedComment(e.target.value);
     console.log(updatedComment);
   };
 
+  const handleUpdateSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+    handleEdit({ ...comment, content: updatedComment });
+  };
   return (
     <>
       {" "}
-      <form
-        //onSubmit={handleReplySubmit}
-        className="updateCommentForm"
-      >
+      <form className="updateCommentForm">
         <textarea
           className="updateInput"
-          // placeholder={comment}
+          placeholder={comment.content}
           onChange={handleUpdateChange}
         ></textarea>
 
-        <button
-          className="updateButton"
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-            handleEdit(id, comment)
-          }
-        >
+        <button className="updateButton" onClick={handleUpdateSubmit}>
           Update
         </button>
       </form>

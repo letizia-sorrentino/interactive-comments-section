@@ -13,6 +13,7 @@ const CommentsList = () => {
   // state hook to store comments
   const [user] = useState<UserData>(initialData.currentUser);
   const [comments, setComments] = useState<CommentData[]>(initialData.comments);
+  const [editComment, setEditComment] = useState("");
   const [showModal, setShowModal] = useState<boolean>(false);
   const [commentToDelete, setCommentToDelete] = useState<CommentData>();
 
@@ -98,6 +99,12 @@ const CommentsList = () => {
     );
     console.log("reply", comment, newReply.id);
   };
+  // Function to handle editing a comment
+  const handleEdit = (comment: CommentData) => {
+    // const commentToUpdate = comments.find((comment) => comment.id === id);
+    setEditComment(comment.content);
+    console.log("editComment", editComment);
+  };
 
   //Modal event handlers
   const handleDelete = (id: number, currentUser: string) => {
@@ -131,6 +138,7 @@ const CommentsList = () => {
               subtractScore={subtractScore}
               onDeleteClick={onDeleteClick}
               addReply={handleReply}
+              handleEdit={handleEdit}
             />
             {/* Map over the replies array of each comment and render a Comment component for each reply: */}
             {comment.replies && comment.replies.length > 0 && (
@@ -144,6 +152,7 @@ const CommentsList = () => {
                     subtractScore={subtractScore}
                     addReply={handleReply}
                     onDeleteClick={onDeleteClick}
+                    handleEdit={handleEdit}
                   />
                 ))}
               </div>
