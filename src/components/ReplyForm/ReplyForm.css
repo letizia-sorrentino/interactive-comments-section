@@ -16,7 +16,15 @@
   font-family: inherit;
   color: #63687e;
   margin-bottom: 1rem;
+  outline: none;
 }
+
+.replyInput:active,
+.replyInput:hover {
+  cursor: pointer;
+  border-color: #5457b6;
+}
+
 
 .replyHeader {
   display: flex;

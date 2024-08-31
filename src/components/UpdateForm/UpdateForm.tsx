@@ -55,6 +55,31 @@ const UpdateForm: React.FC<UpdateFormProps> = ({
             )}
             <p className="createdAt">{comment.createdAt}</p>
           </div>
+        </div>
+        <textarea
+          className="updateInput"
+          placeholder={comment.content}
+          onChange={handleUpdateChange}
+        ></textarea>
+        <button className="updateButton" onClick={handleUpdateSubmit}>
+          Update
+        </button>
+        <div className="updateButtonsContainer">
+          <div className="scoreButton">
+            <img
+              className="iconPlus"
+              src={IconPlus}
+              alt="iconPlus"
+              onClick={() => addScore(comment.id)}
+            ></img>
+            <div className="commentScore">{comment.score}</div>
+            <img
+              className="iconMinus"
+              src={IconMinus}
+              alt="iconMinus"
+              onClick={() => subtractScore(comment.id)}
+            ></img>
+          </div>
           <div>
             {comment.user.username !== currentUser ? (
               <button className="replyButton" onClick={() => {}}>
@@ -67,7 +92,6 @@ const UpdateForm: React.FC<UpdateFormProps> = ({
                   className="deleteButton"
                   onClick={() => onDelete(comment)}
                 >
-                  {" "}
                   <img
                     className="iconDelete"
                     src={IconDelete}
@@ -87,31 +111,6 @@ const UpdateForm: React.FC<UpdateFormProps> = ({
               </>
             )}
           </div>
-        </div>
-        <textarea
-          className="updateInput"
-          placeholder={comment.content}
-          onChange={handleUpdateChange}
-        ></textarea>
-        <div className="buttonsContainer">
-          <div className="scoreButton">
-            <img
-              className="iconPlus"
-              src={IconPlus}
-              alt="iconPlus"
-              onClick={() => addScore(comment.id)}
-            ></img>
-            <div className="commentScore">{comment.score}</div>
-            <img
-              className="iconMinus"
-              src={IconMinus}
-              alt="iconMinus"
-              onClick={() => subtractScore(comment.id)}
-            ></img>
-          </div>
-          <button className="updateButton" onClick={handleUpdateSubmit}>
-            Update
-          </button>
         </div>
       </form>
     </>

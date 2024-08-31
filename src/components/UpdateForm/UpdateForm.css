@@ -1,5 +1,6 @@
     .updateCommentForm {
         padding: 1rem;
+        position: relative;
     }
 
     .updateCommentHeader {
@@ -22,8 +23,15 @@
         font-family: inherit;
         color: #63687e;
         margin-bottom: 1rem;
+        outline: none;
+
     }
 
+    .updateInput:active,
+    .updateInput:hover {
+        cursor: pointer;
+        border-color: #5457b6;
+    }
 
     .updateButton {
         border-radius: 8px;
@@ -36,5 +44,14 @@
         transition: border-color 0.25s;
         color: white;
         background-color: #5457b6;
-        justify-self: flex-end;
+        position: absolute;
+        top: 8.75rem;
+        right: 5%;
+    }
+
+    .updateButtonsContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 2rem;
     }

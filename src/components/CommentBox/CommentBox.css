@@ -116,7 +116,8 @@
   background: #eaecf1;
   content: "";
   top: 0;
-  height: 95%;
+  height: 100%;
   position: absolute;
   width: 3px;
+  left: -11%;
 }
