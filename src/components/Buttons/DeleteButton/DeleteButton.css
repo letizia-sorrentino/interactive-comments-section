@@ -1,0 +1,13 @@
+.iconDelete {
+    margin-left: 0.5rem;
+}
+
+.deleteButton {
+    color: hsl(358, 79%, 66%);
+    font-weight: 600;
+    background-color: transparent;
+}
+
+.deleteButton:hover {
+    color: hsl(357, 100%, 86%);
+}

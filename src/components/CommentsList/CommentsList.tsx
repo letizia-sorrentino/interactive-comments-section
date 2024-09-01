@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 import { CommentData, CommentThreadData, UserData } from "../../types/types";
 import data from "../../data.json";
-import CommentBox from "../CommentBox/CommentBox";
+import CommentBox from "../Comment/CommentBox/CommentBox";
 import Modal from "../Modal/Modal";
-import CommentForm from "../CommentForm/CommentForm";
+import CommentForm from "../Forms/CommentForm/CommentForm";
 
 // initial data
 const initialData: CommentThreadData = data;
@@ -29,33 +29,6 @@ const CommentsList = () => {
   useEffect(() => {
     getData();
   }, []); //run only once
-
-  /**
-   * A function that takes a comment's id and increases its score.
-   * @param id which is a number
-   * The result is the score increases from the user clicking on it.
-   */
-  const addScore = (id: number) => {
-    setComments((prevComments) =>
-      prevComments.map((comment) =>
-        comment.id === id ? { ...comment, score: comment.score + 1 } : comment
-      )
-    );
-  };
-
-  /**
-   * A function that takes a comment's id and decreases its score
-   * @param id which is a number
-   * The result is the score decreased from the user clicking on it.
-   */
-
-  const subtractScore = (id: number) => {
-    setComments((prevComments) =>
-      prevComments.map((comment) =>
-        comment.id === id ? { ...comment, score: comment.score - 1 } : comment
-      )
-    );
-  };
 
   const onDeleteClick = (comment: CommentData) => {
     setShowModal(true);
@@ -134,8 +107,6 @@ const CommentsList = () => {
             <CommentBox
               comment={comment}
               currentUser={user.username}
-              addScore={addScore}
-              subtractScore={subtractScore}
               onDeleteClick={onDeleteClick}
               addReply={handleReply}
               handleEdit={handleEdit}
@@ -148,8 +119,6 @@ const CommentsList = () => {
                     key={reply.id}
                     comment={reply}
                     currentUser={user.username}
-                    addScore={addScore}
-                    subtractScore={subtractScore}
                     addReply={handleReply}
                     onDeleteClick={onDeleteClick}
                     handleEdit={handleEdit}

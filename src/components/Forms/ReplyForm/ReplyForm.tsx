@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { UserData, CommentThreadData } from "../../types/types";
-import data from "../../data.json";
+import { UserData, CommentThreadData } from "../../../types/types";
+import data from "../../../data.json";
 import "./ReplyForm.css";
 
 const initialData: CommentThreadData = data;
