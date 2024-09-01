@@ -44,3 +44,7 @@
   background-color: #5457b6;
   justify-self: flex-end;
 }
+
+.addReplyButton:hover {
+  opacity: 50%;
+}
