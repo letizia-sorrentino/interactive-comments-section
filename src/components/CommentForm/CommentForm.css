@@ -39,3 +39,7 @@
     background-color: hsl(238, 40%, 52%);
     justify-self: flex-end;
 }
+
+.addCommentButton:hover {
+    opacity: 50%;
+}
