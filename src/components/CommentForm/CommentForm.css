@@ -17,6 +17,13 @@
     font-family: inherit;
     color: hsl(228, 12%, 44%);
     grid-column: span 2;
+    outline: none;
+}
+
+.commentInput:active,
+.commentInput:hover {
+    cursor: pointer;
+    border-color: #5457b6;
 }
 
 .addCommentButton {
