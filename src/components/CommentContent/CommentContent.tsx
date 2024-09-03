@@ -1,4 +1,4 @@
-import { CommentData } from "../../../types/types";
+import { CommentData } from "../../types/types";
 
 interface CommentContentProps {
   comment: CommentData;

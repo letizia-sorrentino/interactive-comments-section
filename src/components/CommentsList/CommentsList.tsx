@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 import { CommentData, CommentThreadData, UserData } from "../../types/types";
 import data from "../../data.json";
-import CommentBox from "../Comment/CommentBox/CommentBox";
+import CommentBox from "../CommentBox/CommentBox";
 import Modal from "../Modal/Modal";
 import CommentForm from "../Forms/CommentForm/CommentForm";
 
@@ -13,7 +13,8 @@ const CommentsList = () => {
   // state hook to store comments
   const [user] = useState<UserData>(initialData.currentUser);
   const [comments, setComments] = useState<CommentData[]>(initialData.comments);
-  const [editComment, setEditComment] = useState("");
+  const [editComment, setEditComment] = useState<string>("");
+  // const [hideReplyForm, setHideReplyForm] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [commentToDelete, setCommentToDelete] = useState<CommentData>();
 
@@ -70,7 +71,7 @@ const CommentsList = () => {
         };
       })
     );
-    console.log("reply", comment, newReply.id);
+    console.log("reply", comment);
   };
   // Function to handle editing a comment
   const handleEdit = (comment: CommentData) => {

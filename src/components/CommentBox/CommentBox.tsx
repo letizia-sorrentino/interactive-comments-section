@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { CommentData, CommentThreadData } from "../../../types/types";
-import data from "../../../data.json";
-import ReplyForm from "../../Forms/ReplyForm/ReplyForm";
-import UpdateForm from "../../Forms/UpdateForm/UpdateForm";
-import ScoreButton from "../../Buttons/ScoreButton/ScoreButton";
-import ReplyButton from "../../Buttons/ReplyButton/ReplyButton";
-import DeleteButton from "../../Buttons/DeleteButton/DeleteButton";
-import EditButton from "../../Buttons/EditButton/EditButton";
-import CommentHeader from "../../Comment/CommentHeader/CommentHeader";
+import { CommentData, CommentThreadData } from "../../types/types";
+import data from "../../data.json";
+import ReplyForm from "../Forms/ReplyForm/ReplyForm";
+import UpdateForm from "../Forms/UpdateForm/UpdateForm";
+import ScoreButton from "../Buttons/ScoreButton/ScoreButton";
+import ReplyButton from "../Buttons/ReplyButton/ReplyButton";
+import DeleteButton from "../Buttons/DeleteButton/DeleteButton";
+import EditButton from "../Buttons/EditButton/EditButton";
+import CommentHeader from "../CommentHeader/CommentHeader";
 import CommentContent from "../CommentContent/CommentContent";
 import "./CommentBox.css";
 

@@ -17,7 +17,7 @@ const ReplyForm: React.FC<ReplyFormProps> = ({
   // state hook to store comments
   const [user, setUser] = useState<UserData>(initialData.currentUser);
   const [newReply, setNewReply] = useState<string>("");
-  const [showReplyForm, setShowReplyForm] = useState(false);
+  const [hideReplyForm, setHideReplyForm] = useState<boolean>(false);
 
   useEffect(() => {
     //sending initial data to comments in state
@@ -39,30 +39,38 @@ const ReplyForm: React.FC<ReplyFormProps> = ({
 
   const handleReplySubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (newReply.trim() !== "") {
-      // Add a check to prevent empty replies
-      addReply(newReply);
+
+    const fullReply = replyingTo
+      ? `@${replyingTo.username} ${newReply.trim()}`
+      : newReply.trim();
+    if (fullReply !== "") {
+      addReply(fullReply);
       setNewReply("");
-      setShowReplyForm(false);
+      setHideReplyForm(true);
     }
-    console.log("new reply:", newReply, showReplyForm);
+    console.log("new reply:", newReply);
   };
 
   return (
-    <form onSubmit={handleReplySubmit} className="replyForm">
-      <textarea
-        className="replyInput"
-        placeholder={getPlaceholderText()}
-        value={newReply}
-        onChange={handleReplyChange}
-      ></textarea>
-      <div className="replyHeader">
-        <img className="avatar" src={user.image.png} alt={user.username} />
-        <button type="submit" className="addReplyButton">
-          REPLY
-        </button>
-      </div>
-    </form>
+    <>
+      {" "}
+      {!hideReplyForm && (
+        <form onSubmit={handleReplySubmit} className="replyForm">
+          <textarea
+            className="replyInput"
+            placeholder={getPlaceholderText()}
+            value={newReply}
+            onChange={handleReplyChange}
+          ></textarea>
+          <div className="replyHeader">
+            <img className="avatar" src={user.image.png} alt={user.username} />
+            <button type="submit" className="addReplyButton">
+              REPLY
+            </button>
+          </div>
+        </form>
+      )}
+    </>
   );
 };
 export default ReplyForm;

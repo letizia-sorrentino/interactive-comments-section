@@ -25,6 +25,10 @@
   border-color: #5457b6;
 }
 
+.replyInput::placeholder {
+  font-size: 700;
+  color: #5457b6;
+}
 
 .replyHeader {
   display: flex;
